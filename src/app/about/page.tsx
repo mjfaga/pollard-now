@@ -2,12 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/page-header";
 import { CtaLink } from "@/components/cta-button";
+import { JsonLd } from "@/components/json-ld";
 import { externalLinks } from "@/lib/links";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "About",
   description:
     "What Pollard Now is, what a debt exclusion override means, and why a new Pollard Middle School matters for every Needham resident.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About Pollard Now",
+    description:
+      "What Pollard Now is, what a debt exclusion override means, and why a new Pollard Middle School matters for every Needham resident.",
+    url: "/about",
+  },
 };
 
 const pillars = [
@@ -182,6 +191,14 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <JsonLd
+        id="ld-about-breadcrumb"
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ])}
+      />
     </>
   );
 }

@@ -2,12 +2,21 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import { ContactForm } from "./contact-form";
 import { SubscribeForm } from "./subscribe-form";
+import { JsonLd } from "@/components/json-ld";
 import { externalLinks } from "@/lib/links";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
     "Send Pollard Now a message or sign up for email updates about the campaign and the Pollard Middle School building project.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact Pollard Now",
+    description:
+      "Send Pollard Now a message or sign up for email updates about the campaign and the Pollard Middle School building project.",
+    url: "/contact",
+  },
 };
 
 export default function ContactPage() {
@@ -104,6 +113,14 @@ export default function ContactPage() {
           </a>
         </div>
       </section>
+
+      <JsonLd
+        id="ld-contact-breadcrumb"
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ])}
+      />
     </>
   );
 }

@@ -1,13 +1,12 @@
 import type { MetadataRoute } from "next";
-
-const SITE_URL = "https://pollardnow.com";
+import { SITE } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
   return [
-    { url: `${SITE_URL}/`, lastModified, priority: 1 },
-    { url: `${SITE_URL}/about`, lastModified, priority: 0.8 },
-    { url: `${SITE_URL}/faq`, lastModified, priority: 0.8 },
-    { url: `${SITE_URL}/contact`, lastModified, priority: 0.7 },
+    { url: `${SITE.url}/`, lastModified, priority: 1, changeFrequency: "weekly" },
+    { url: `${SITE.url}/about`, lastModified, priority: 0.8, changeFrequency: "monthly" },
+    { url: `${SITE.url}/faq`, lastModified, priority: 0.8, changeFrequency: "monthly" },
+    { url: `${SITE.url}/contact`, lastModified, priority: 0.7, changeFrequency: "yearly" },
   ];
 }

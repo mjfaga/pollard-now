@@ -5,6 +5,9 @@ import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { JsonLd } from "@/components/json-ld";
+import { SITE, absUrl } from "@/lib/site";
+import { organizationSchema, websiteSchema } from "@/lib/schema";
 
 const TRANSLATE_LANGS = "ar,zh-CN,nl,en,fr,de,it,pt,ru,es";
 
@@ -21,39 +24,74 @@ const fraunces = Fraunces({
   axes: ["opsz"],
 });
 
-const SITE_URL = "https://pollardnow.com";
+const defaultTitle = `${SITE.name} — ${SITE.tagline}`;
+const defaultSocialDescription =
+  "Building a sustainable, 21st-century middle school for our students and a stronger future for the Needham community.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(SITE.url),
   title: {
-    default: "Pollard Now — The Time is Now for Pollard",
-    template: "%s · Pollard Now",
+    default: defaultTitle,
+    template: `%s · ${SITE.name}`,
   },
-  description:
-    "A Needham community campaign to support the debt exclusion override and build a new Pollard Middle School for grades 6–8.",
+  description: SITE.description,
+  applicationName: SITE.name,
+  authors: [{ name: SITE.name }],
+  creator: SITE.name,
+  publisher: SITE.name,
   keywords: [
     "Pollard Middle School",
-    "Needham",
-    "debt exclusion",
-    "school override",
     "Pollard Now",
+    "Needham",
+    "Needham Massachusetts",
+    "Needham schools",
+    "debt exclusion override",
+    "school building override",
+    "Pollard Building Project",
+    "school construction Needham",
+    "middle school grades 6-8",
   ],
+  category: "civic",
+  alternates: {
+    canonical: SITE.url,
+  },
   openGraph: {
-    title: "Pollard Now — The Time is Now for Pollard",
-    description:
-      "Building a sustainable, 21st-century middle school for our students and a stronger future for the Needham community.",
-    url: SITE_URL,
-    siteName: "Pollard Now",
-    locale: "en_US",
     type: "website",
+    title: defaultTitle,
+    description: defaultSocialDescription,
+    url: SITE.url,
+    siteName: SITE.name,
+    locale: SITE.locale,
+    images: [
+      {
+        url: absUrl(SITE.ogImage),
+        width: SITE.ogImageWidth,
+        height: SITE.ogImageHeight,
+        alt: `${SITE.name} — ${SITE.tagline}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pollard Now — The Time is Now for Pollard",
-    description:
-      "Building a sustainable, 21st-century middle school for our students and a stronger future for the Needham community.",
+    title: defaultTitle,
+    description: defaultSocialDescription,
+    images: [absUrl(SITE.ogImage)],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  icons: { icon: "/icon.svg" },
+  verification: {
+    // Add real verification tokens here when configured.
+  },
 };
 
 export default function RootLayout({
@@ -95,6 +133,8 @@ export default function RootLayout({
           src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
           strategy="afterInteractive"
         />
+        <JsonLd id="ld-website" data={websiteSchema()} />
+        <JsonLd id="ld-organization" data={organizationSchema()} />
       </body>
     </html>
   );

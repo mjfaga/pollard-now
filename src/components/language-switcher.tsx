@@ -82,7 +82,15 @@ async function applyLanguage(code: string) {
     window.location.reload();
     return;
   }
-  combo.value = code === "en" ? "" : code;
+  if (code === "en") {
+    // Restoring English doesn't run a translation — it tells Google to
+    // unwind the existing one, which is effectively instant. Skip the
+    // busy-state delay so the user gets immediate feedback.
+    combo.value = "";
+    combo.dispatchEvent(new Event("change"));
+    return;
+  }
+  combo.value = code;
   combo.dispatchEvent(new Event("change"));
   // Google translates the DOM asynchronously after the change event.
   // Hold the busy state long enough for users to see most of the swap.
@@ -139,9 +147,16 @@ export function LanguageSwitcher() {
       setOpen(false);
       return;
     }
+    setOpen(false);
+    // Restoring English just unwinds the existing translation — skip the
+    // spinner/banner so it feels instant.
+    if (code === "en") {
+      setCurrentCode("en");
+      await applyLanguage("en");
+      return;
+    }
     setBusy(true);
     setPendingCode(code);
-    setOpen(false);
     await applyLanguage(code);
     setCurrentCode(code);
     setPendingCode(null);
