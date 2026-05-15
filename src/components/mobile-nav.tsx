@@ -68,7 +68,11 @@ export function MobileNav() {
           role="dialog"
           aria-modal="true"
           aria-label="Site navigation"
-          className="fixed inset-0 z-50 bg-background"
+          // Inline background guarantees the panel is fully opaque even if
+          // a parent stacking context's backdrop-blur or a later z-50
+          // element bleeds through.
+          style={{ backgroundColor: "var(--background)" }}
+          className="fixed inset-0 z-[60] flex flex-col overflow-y-auto"
         >
           <div className="flex items-center justify-between border-b border-border px-5 py-4">
             <Link
