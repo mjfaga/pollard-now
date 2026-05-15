@@ -84,6 +84,9 @@ async function applyLanguage(code: string) {
   }
   combo.value = code === "en" ? "" : code;
   combo.dispatchEvent(new Event("change"));
+  // Google translates the DOM asynchronously after the change event.
+  // Hold the busy state long enough for users to see most of the swap.
+  await new Promise((r) => setTimeout(r, 900));
 }
 
 export function LanguageSwitcher() {
@@ -129,19 +132,26 @@ export function LanguageSwitcher() {
     };
   }, [open]);
 
+  const [pendingCode, setPendingCode] = useState<string | null>(null);
+
   async function handleSelect(code: string) {
     if (busy || code === currentCode) {
       setOpen(false);
       return;
     }
     setBusy(true);
-    setCurrentCode(code);
+    setPendingCode(code);
     setOpen(false);
     await applyLanguage(code);
+    setCurrentCode(code);
+    setPendingCode(null);
     setBusy(false);
   }
 
   const badge = currentCode === "en" ? "EN" : currentCode.toUpperCase();
+  const pendingLang = pendingCode
+    ? LANGUAGES.find((l) => l.code === pendingCode)
+    : null;
 
   return (
     <div
@@ -154,34 +164,88 @@ export function LanguageSwitcher() {
         aria-haspopup="dialog"
         aria-expanded={open}
         aria-controls={dialogId}
-        aria-label="Choose a language"
+        aria-label={
+          busy && pendingLang
+            ? `Translating to ${pendingLang.english}`
+            : "Choose a language"
+        }
+        aria-busy={busy || undefined}
         onClick={() => setOpen((o) => !o)}
         disabled={busy}
-        className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface px-4 py-2.5 text-sm font-semibold text-foreground shadow-lg shadow-black/10 transition-colors hover:bg-surface-muted disabled:opacity-70"
+        className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface px-4 py-2.5 text-sm font-semibold text-foreground shadow-lg shadow-black/10 transition-colors hover:bg-surface-muted disabled:cursor-progress disabled:opacity-90"
       >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.9"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <circle cx="12" cy="12" r="9" />
-          <path d="M3 12h18" />
-          <path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z" />
-        </svg>
-        <span>Language</span>
+        {busy ? (
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            aria-hidden="true"
+            className="animate-spin text-primary"
+          >
+            <path d="M12 3a9 9 0 1 0 9 9" />
+          </svg>
+        ) : (
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.9"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="9" />
+            <path d="M3 12h18" />
+            <path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z" />
+          </svg>
+        )}
+        <span>
+          {busy && pendingLang
+            ? `Translating…`
+            : "Language"}
+        </span>
         <span
           aria-hidden="true"
           className="rounded-full bg-primary px-2 py-0.5 text-xs font-bold text-primary-contrast"
         >
-          {badge}
+          {busy && pendingCode ? pendingCode.toUpperCase() : badge}
         </span>
       </button>
+
+      {busy && pendingLang && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="pointer-events-none fixed inset-x-0 top-4 z-50 mx-auto flex w-fit max-w-[90vw] items-center gap-3 rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-medium text-foreground shadow-xl shadow-black/20"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            aria-hidden="true"
+            className="animate-spin text-primary"
+          >
+            <path d="M12 3a9 9 0 1 0 9 9" />
+          </svg>
+          <span>
+            Translating to{" "}
+            <span lang={pendingLang.code} className="font-semibold">
+              {pendingLang.native}
+            </span>
+            …
+          </span>
+        </div>
+      )}
 
       {open && (
         <div

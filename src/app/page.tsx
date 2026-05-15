@@ -1,9 +1,47 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CtaLink } from "@/components/cta-button";
+import {
+  ProjectCarousel,
+  type CarouselSlide,
+} from "@/components/project-carousel";
 import { externalLinks } from "@/lib/links";
 import logo from "../../public/images/pollard-now-logo-full.png";
-import sitePlans from "../../public/images/site-plans-comparison.png";
+import siteDesign from "../../public/images/carousel/image.png";
+import sitePlanComparison from "../../public/images/carousel/image-1.png";
+import currentBackLot from "../../public/images/carousel/IMG_2599-scaled.jpg";
+import currentFront from "../../public/images/carousel/IMG_2603-scaled.jpg";
+
+const carouselSlides: CarouselSlide[] = [
+  {
+    src: siteDesign,
+    alt: "Annotated site design diagram for the new Pollard Middle School showing the proposed building, with callouts: supplementing existing planting along frontage, driveway aligned to Mayo Ave, parking trays with PV canopies, bus exit route on-site, covered bike parking near front door, relocated loading dock, reduced bus drive width, outdoor fitness stations, fields relocated to front of school with parking moved to edges, safe bike paths to covered bike parking, second parking lot access, high fencing around field, HP and van spaces near front door, minimizing existing tree removal and replanting with new. Vehicle capacity: 260 parked cars, 26 cars in queue, 19 buses, 5 vans.",
+    title: "Site design — current progress",
+    caption:
+      "The proposed Pollard site with the building's relationship to fields, parking, bike paths, the loading dock, and existing trees called out.",
+  },
+  {
+    src: sitePlanComparison,
+    alt: "Three side-by-side site plans of the Pollard Middle School property. Left: the existing site showing the current building footprint, parking, fields, and surrounding streets. Middle: the January 2026 plan with a new building footprint and reorganized parking, marked '260 parking spaces'. Right: the March 2026 plan, the latest layout, also '260 parking spaces', with refined building shape and labeled Primary, Secondary, and Cafeteria entrances.",
+    title: "From today’s footprint to the new Pollard",
+    caption:
+      "Three-up comparison: the existing site, the January 2026 plan, and the latest March 2026 plan — both proposals hold 260 parking spaces.",
+  },
+  {
+    src: currentFront,
+    alt: "Photograph of the current Pollard Middle School building from the front. A brick single-story building with a central tower, fronted by accessible ramps and railings. An American flag is on a pole at the left.",
+    title: "Pollard today — the front",
+    caption:
+      "The current Pollard building, in service since 1969, has been studied, patched, and stretched past its useful life.",
+  },
+  {
+    src: currentBackLot,
+    alt: "Photograph of the back of the current Pollard Middle School. Modular trailer classrooms sit on a paved area behind the main building, fenced off, with a small set of red exterior steps leading up to each unit.",
+    title: "Pollard today — the modular wing",
+    caption:
+      "Modular trailers behind the main building have stood in for classroom space the existing footprint can no longer absorb.",
+  },
+];
 
 export default function HomePage() {
   return (
@@ -211,45 +249,50 @@ export default function HomePage() {
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-wider text-accent-hover">
-              What&apos;s being built
+              What&apos;s being built — and what we have today
             </p>
             <h2
               id="plans-heading"
               className="mt-2 font-display text-3xl font-semibold leading-tight text-foreground md:text-4xl"
             >
-              From today&apos;s footprint to the new Pollard.
+              The plan in pictures.
             </h2>
           </div>
           <p className="max-w-md text-foreground-muted">
-            The current Pollard site, the January 2026 plan, and the latest
-            March 2026 plan — published by Needham Public Schools.
-          </p>
-        </div>
-
-        <figure className="mt-8 overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
-          <Image
-            src={sitePlans}
-            alt="Three side-by-side site plans of the Pollard Middle School property. Left: the existing site showing the current building footprint, parking areas, fields, and surrounding streets. Middle: the January 2026 plan with a new building footprint and reorganized parking, marked '260 parking spaces'. Right: the March 2026 plan, the latest layout, also marked '260 parking spaces', with refined building shape and entrances labeled Primary, Secondary, and Cafeteria."
-            sizes="(min-width: 1024px) 1024px, 100vw"
-            placeholder="blur"
-            className="h-auto w-full"
-          />
-          <figcaption className="border-t border-border bg-surface-muted px-5 py-4 text-sm text-foreground-muted md:px-7">
-            Source: Needham Public Schools, Pollard Building Project — see
-            the{" "}
+            Site design, plan comparison, and photos of the building Needham
+            has today — the same gallery you&apos;ll find on{" "}
             <a
-              href={externalLinks.projectPage}
+              href="https://pollardnow.com"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-primary hover:text-primary-hover"
             >
-              official project page
-              <span aria-hidden="true"> ↗</span>
-              <span className="sr-only">(opens in new tab)</span>
-            </a>{" "}
-            for full-resolution plans and ongoing updates.
-          </figcaption>
-        </figure>
+              pollardnow.com
+            </a>
+            .
+          </p>
+        </div>
+
+        <div className="mt-8">
+          <ProjectCarousel
+            slides={carouselSlides}
+            ariaLabel="Pollard project plans and current building photos"
+          />
+        </div>
+        <p className="mt-4 text-sm text-foreground-muted">
+          Full-resolution plans and ongoing updates live on the{" "}
+          <a
+            href={externalLinks.projectPage}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-primary hover:text-primary-hover"
+          >
+            official Needham Public Schools project page
+            <span aria-hidden="true"> ↗</span>
+            <span className="sr-only">(opens in new tab)</span>
+          </a>
+          .
+        </p>
       </section>
 
       <section
