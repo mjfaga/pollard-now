@@ -85,3 +85,27 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Hide the default Google Translate widget chrome and prevent the
+   layout shift it normally introduces. Our own LanguageSwitcher drives
+   the hidden <select class="goog-te-combo"> instead. */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+.skiptranslate iframe,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+/* Google Translate adds inline backgroundColor on translated nodes. */
+font[style*="background-color"],
+span[style*="background-color"] {
+  background: transparent !important;
+  box-shadow: none !important;
+}

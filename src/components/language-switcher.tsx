@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
 
 type Language = {
   code: string;
@@ -24,26 +23,83 @@ const LANGUAGES: Language[] = [
   { code: "ar", english: "Arabic", native: "العربية", dir: "rtl" },
 ];
 
-function buildTranslateUrl(code: string, currentUrl: string) {
-  const encoded = encodeURIComponent(currentUrl);
-  return `https://translate.google.com/translate?sl=en&tl=${code}&u=${encoded}`;
+const COOKIE_NAME = "googtrans";
+
+function readCurrentLang(): string {
+  if (typeof document === "undefined") return "en";
+  const match = document.cookie
+    .split("; ")
+    .find((c) => c.startsWith(`${COOKIE_NAME}=`));
+  if (!match) return "en";
+  const value = decodeURIComponent(match.split("=")[1] ?? "");
+  const parts = value.split("/");
+  const code = parts[2];
+  if (!code || code === "en") return "en";
+  return code;
+}
+
+function clearGoogtransCookie() {
+  if (typeof document === "undefined") return;
+  const host = window.location.hostname;
+  const expired = "expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  const variants = [
+    `${COOKIE_NAME}=; ${expired}; path=/`,
+    `${COOKIE_NAME}=; ${expired}; path=/; domain=${host}`,
+    `${COOKIE_NAME}=; ${expired}; path=/; domain=.${host}`,
+  ];
+  for (const v of variants) document.cookie = v;
+}
+
+function setPersistedLang(code: string) {
+  clearGoogtransCookie();
+  if (code !== "en") {
+    document.cookie = `${COOKIE_NAME}=/en/${code}; path=/`;
+  }
+}
+
+function findCombo(): HTMLSelectElement | null {
+  return document.querySelector<HTMLSelectElement>("select.goog-te-combo");
+}
+
+async function waitForCombo(timeoutMs = 4000): Promise<HTMLSelectElement | null> {
+  const start = Date.now();
+  // Poll for the combo element — Google Translate injects it asynchronously
+  // after the element.js script runs and finishes its first paint.
+  while (Date.now() - start < timeoutMs) {
+    const el = findCombo();
+    if (el) return el;
+    await new Promise((r) => setTimeout(r, 80));
+  }
+  return null;
+}
+
+async function applyLanguage(code: string) {
+  setPersistedLang(code);
+  const combo = (await waitForCombo()) ?? findCombo();
+  if (!combo) {
+    // Element script failed to load — fall back to a reload so the cookie
+    // gets picked up the next time it does load.
+    window.location.reload();
+    return;
+  }
+  combo.value = code === "en" ? "" : code;
+  combo.dispatchEvent(new Event("change"));
 }
 
 export function LanguageSwitcher() {
-  const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [currentUrl, setCurrentUrl] = useState("");
+  const [currentCode, setCurrentCode] = useState("en");
+  const [busy, setBusy] = useState(false);
   const dialogRef = useRef<HTMLDivElement | null>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
-  const firstItemRef = useRef<HTMLAnchorElement | null>(null);
+  const firstItemRef = useRef<HTMLButtonElement | null>(null);
   const dialogId = useId();
   const labelId = useId();
 
   useEffect(() => {
-    // Capture the full URL (including hash + query) for the translate links.
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (typeof window !== "undefined") setCurrentUrl(window.location.href);
-  }, [pathname]);
+    setCurrentCode(readCurrentLang());
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -73,8 +129,25 @@ export function LanguageSwitcher() {
     };
   }, [open]);
 
+  async function handleSelect(code: string) {
+    if (busy || code === currentCode) {
+      setOpen(false);
+      return;
+    }
+    setBusy(true);
+    setCurrentCode(code);
+    setOpen(false);
+    await applyLanguage(code);
+    setBusy(false);
+  }
+
+  const badge = currentCode === "en" ? "EN" : currentCode.toUpperCase();
+
   return (
-    <div className="fixed bottom-5 right-5 z-40 print:hidden md:bottom-6 md:right-6">
+    <div
+      className="notranslate fixed bottom-5 right-5 z-40 print:hidden md:bottom-6 md:right-6"
+      translate="no"
+    >
       <button
         ref={triggerRef}
         type="button"
@@ -83,7 +156,8 @@ export function LanguageSwitcher() {
         aria-controls={dialogId}
         aria-label="Choose a language"
         onClick={() => setOpen((o) => !o)}
-        className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface px-4 py-2.5 text-sm font-semibold text-foreground shadow-lg shadow-black/10 transition-colors hover:bg-surface-muted"
+        disabled={busy}
+        className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface px-4 py-2.5 text-sm font-semibold text-foreground shadow-lg shadow-black/10 transition-colors hover:bg-surface-muted disabled:opacity-70"
       >
         <svg
           width="18"
@@ -105,7 +179,7 @@ export function LanguageSwitcher() {
           aria-hidden="true"
           className="rounded-full bg-primary px-2 py-0.5 text-xs font-bold text-primary-contrast"
         >
-          EN
+          {badge}
         </span>
       </button>
 
@@ -152,24 +226,18 @@ export function LanguageSwitcher() {
 
           <ul className="max-h-72 overflow-y-auto pr-1">
             {LANGUAGES.map((lang, i) => {
-              const isEnglish = lang.code === "en";
-              const href = isEnglish
-                ? "/"
-                : buildTranslateUrl(lang.code, currentUrl || "/");
+              const isActive = lang.code === currentCode;
               return (
                 <li key={lang.code}>
-                  <a
+                  <button
                     ref={i === 0 ? firstItemRef : undefined}
-                    href={href}
-                    {...(!isEnglish && {
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                    })}
-                    onClick={() => setOpen(false)}
+                    type="button"
+                    onClick={() => handleSelect(lang.code)}
                     lang={lang.code}
                     dir={lang.dir}
-                    className={`flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors hover:bg-surface-muted ${
-                      isEnglish
+                    aria-current={isActive ? "true" : undefined}
+                    className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-surface-muted ${
+                      isActive
                         ? "bg-surface-muted font-semibold text-primary"
                         : "text-foreground"
                     }`}
@@ -180,30 +248,22 @@ export function LanguageSwitcher() {
                         {lang.english}
                       </span>
                     </span>
-                    {isEnglish ? (
+                    {isActive && (
                       <span
                         aria-hidden="true"
                         className="text-xs font-semibold uppercase tracking-wider text-primary"
                       >
                         Current
                       </span>
-                    ) : (
-                      <span
-                        aria-hidden="true"
-                        className="text-xs text-foreground-muted"
-                      >
-                        ↗
-                      </span>
                     )}
-                  </a>
+                  </button>
                 </li>
               );
             })}
           </ul>
 
           <p className="mt-2 border-t border-border px-3 pt-3 text-xs leading-snug text-foreground-muted">
-            Translations are provided by Google Translate and open in a new
-            tab.
+            Translations are provided by Google Translate.
           </p>
         </div>
       )}

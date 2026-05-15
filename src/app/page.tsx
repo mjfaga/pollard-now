@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CtaLink } from "@/components/cta-button";
 import { externalLinks } from "@/lib/links";
 import logo from "../../public/images/pollard-now-logo-full.png";
+import sitePlans from "../../public/images/site-plans-comparison.png";
 
 export default function HomePage() {
   return (
@@ -201,6 +202,54 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section
+        aria-labelledby="plans-heading"
+        className="mx-auto max-w-6xl px-5 pt-16 md:px-8 md:pt-20"
+      >
+        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wider text-accent-hover">
+              What&apos;s being built
+            </p>
+            <h2
+              id="plans-heading"
+              className="mt-2 font-display text-3xl font-semibold leading-tight text-foreground md:text-4xl"
+            >
+              From today&apos;s footprint to the new Pollard.
+            </h2>
+          </div>
+          <p className="max-w-md text-foreground-muted">
+            The current Pollard site, the January 2026 plan, and the latest
+            March 2026 plan — published by Needham Public Schools.
+          </p>
+        </div>
+
+        <figure className="mt-8 overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
+          <Image
+            src={sitePlans}
+            alt="Three side-by-side site plans of the Pollard Middle School property. Left: the existing site showing the current building footprint, parking areas, fields, and surrounding streets. Middle: the January 2026 plan with a new building footprint and reorganized parking, marked '260 parking spaces'. Right: the March 2026 plan, the latest layout, also marked '260 parking spaces', with refined building shape and entrances labeled Primary, Secondary, and Cafeteria."
+            sizes="(min-width: 1024px) 1024px, 100vw"
+            placeholder="blur"
+            className="h-auto w-full"
+          />
+          <figcaption className="border-t border-border bg-surface-muted px-5 py-4 text-sm text-foreground-muted md:px-7">
+            Source: Needham Public Schools, Pollard Building Project — see
+            the{" "}
+            <a
+              href={externalLinks.projectPage}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-primary hover:text-primary-hover"
+            >
+              official project page
+              <span aria-hidden="true"> ↗</span>
+              <span className="sr-only">(opens in new tab)</span>
+            </a>{" "}
+            for full-resolution plans and ongoing updates.
+          </figcaption>
+        </figure>
       </section>
 
       <section
