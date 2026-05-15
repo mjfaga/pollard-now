@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CampaignSection } from "@/components/campaign-section";
 import { CtaLink } from "@/components/cta-button";
 import {
   ProjectCarousel,
@@ -169,29 +170,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section
-        aria-labelledby="mission-heading"
-        className="border-y border-border bg-surface"
-      >
-        <div className="mx-auto max-w-4xl px-5 py-16 md:px-8 md:py-20">
-          <p className="text-sm font-semibold uppercase tracking-wider text-accent-hover">
-            Our campaign
-          </p>
-          <h2
-            id="mission-heading"
-            className="mt-3 font-display text-3xl font-semibold leading-tight text-foreground md:text-4xl"
-          >
-            A community campaign to build the school our students deserve.
-          </h2>
-          <p className="mt-6 text-lg leading-relaxed text-foreground-muted md:text-xl">
-            Our Pollard Now campaign is to support passage of the debt
-            exclusion override in Needham to build a new Pollard middle school
-            for grades 6–8. We are working hard to inform Needham residents
-            about the benefits to all of the new build and welcome your help
-            and support.
-          </p>
-        </div>
-      </section>
+      <CampaignSection />
 
       <section
         aria-labelledby="project-page-heading"
