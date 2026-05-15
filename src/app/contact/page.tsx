@@ -14,9 +14,9 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Contact"
-        title="Let's talk."
-        description="Send us a message, sign up for updates, or jump straight into volunteering. A real person reads every note."
+        eyebrow="Get in touch"
+        title="Contact us & sign up for our mailing list."
+        description="Send us a message or join the email list — short, occasional updates with key dates, talking points, and ways to help. A real person reads every note."
       />
 
       <section className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-2 md:gap-12 md:px-8 md:py-20">

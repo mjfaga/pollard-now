@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { externalLinks, navLinks } from "@/lib/links";
+import logo from "../../public/images/pollard-now-logo-full.png";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -9,15 +11,18 @@ export function SiteFooter() {
         <div>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 font-display text-xl font-semibold text-primary"
+            aria-label="Pollard Now — home"
+            className="inline-flex items-center gap-3"
           >
-            <span
-              aria-hidden="true"
-              className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-contrast font-display text-base"
-            >
-              P
+            <Image
+              src={logo}
+              alt=""
+              sizes="80px"
+              className="h-12 w-auto rounded-md"
+            />
+            <span className="font-display text-xl font-semibold text-primary">
+              Pollard Now
             </span>
-            Pollard Now
           </Link>
           <p className="mt-3 max-w-xs text-sm leading-6 text-foreground-muted">
             A Needham community campaign supporting the debt exclusion override

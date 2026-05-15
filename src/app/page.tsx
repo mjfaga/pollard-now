@@ -1,6 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import { CtaLink } from "@/components/cta-button";
 import { externalLinks } from "@/lib/links";
+import logo from "../../public/images/pollard-now-logo-full.png";
 
 export default function HomePage() {
   return (
@@ -73,9 +75,17 @@ export default function HomePage() {
             aria-label="Campaign at a glance"
             className="relative rounded-3xl border border-border bg-surface p-7 shadow-sm md:p-8"
           >
-            <h2 className="font-display text-xl font-semibold text-foreground">
-              At a glance
-            </h2>
+            <div className="flex items-center gap-4">
+              <Image
+                src={logo}
+                alt="Pollard Now"
+                sizes="96px"
+                className="h-16 w-auto rounded-lg shadow-sm"
+              />
+              <h2 className="font-display text-xl font-semibold text-foreground">
+                At a glance
+              </h2>
+            </div>
             <dl className="mt-5 space-y-5">
               <div>
                 <dt className="text-xs font-semibold uppercase tracking-wider text-foreground-muted">
@@ -141,6 +151,55 @@ export default function HomePage() {
             about the benefits to all of the new build and welcome your help
             and support.
           </p>
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="project-page-heading"
+        className="mx-auto max-w-6xl px-5 pt-16 md:px-8 md:pt-20"
+      >
+        <div className="relative overflow-hidden rounded-3xl bg-[#162848] p-7 text-white md:p-12">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/30 blur-3xl"
+          />
+          <div className="relative grid items-center gap-8 md:grid-cols-[auto_1fr] md:gap-12">
+            <div className="flex items-center justify-center rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 md:p-8">
+              <Image
+                src={logo}
+                alt="Pollard Now"
+                sizes="(min-width: 768px) 240px, 180px"
+                className="h-32 w-auto md:h-40"
+              />
+            </div>
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wider text-accent-soft">
+                From Needham Public Schools
+              </p>
+              <h2
+                id="project-page-heading"
+                className="mt-3 font-display text-3xl font-semibold leading-tight md:text-4xl"
+              >
+                Click here to access the Pollard Middle School Project Page.
+              </h2>
+              <p className="mt-4 max-w-2xl text-white/80">
+                Plans, financial impact tables, meeting minutes, and the
+                latest timeline updates — straight from the source.
+              </p>
+              <div className="mt-7">
+                <a
+                  href={externalLinks.projectPage}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-base font-semibold text-foreground hover:bg-accent-hover hover:text-primary-contrast"
+                >
+                  Open the project page
+                  <span aria-hidden="true">↗</span>
+                  <span className="sr-only">(opens in new tab)</span>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -3,6 +3,7 @@ import { Geist, Fraunces } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -69,6 +70,7 @@ export default function RootLayout({
           {children}
         </main>
         <SiteFooter />
+        <LanguageSwitcher />
       </body>
     </html>
   );

@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { DesktopNav } from "./desktop-nav";
 import { MobileNav } from "./mobile-nav";
 import { externalLinks } from "@/lib/links";
+import logo from "../../public/images/pollard-now-logo-full.png";
 
 export function SiteHeader() {
   return (
@@ -9,15 +11,23 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 md:px-8">
         <Link
           href="/"
-          className="flex items-center gap-2 font-display text-xl font-semibold tracking-tight text-primary"
+          aria-label="Pollard Now — home"
+          className="flex items-center gap-3"
         >
+          <Image
+            src={logo}
+            alt=""
+            priority
+            sizes="(min-width: 768px) 64px, 56px"
+            className="h-10 w-auto rounded-md md:h-11"
+          />
+          <span className="sr-only">Pollard Now</span>
           <span
             aria-hidden="true"
-            className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-contrast font-display text-base"
+            className="hidden font-display text-xl font-semibold tracking-tight text-primary md:inline"
           >
-            P
+            Pollard Now
           </span>
-          Pollard Now
         </Link>
 
         <div className="flex items-center gap-2 md:gap-6">
