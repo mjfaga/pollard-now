@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CampaignSection } from "@/components/campaign-section";
 import { CtaLink } from "@/components/cta-button";
 import {
   ProjectCarousel,
   type CarouselSlide,
 } from "@/components/project-carousel";
 import { externalLinks } from "@/lib/links";
+import { electionDay, foundation, reasons, voice } from "@/lib/project";
+import { sources, sourceAnchor } from "@/lib/sources";
 import logo from "../../public/images/pollard-now-logo-full.png";
 import siteDesign from "../../public/images/carousel/image.png";
 import sitePlanComparison from "../../public/images/carousel/image-1.png";
@@ -44,9 +45,25 @@ const carouselSlides: CarouselSlide[] = [
   },
 ];
 
+function FootnoteRef({ n }: { n: number }) {
+  return (
+    <sup className="ml-0.5">
+      <a
+        id={`fnref-${n}`}
+        href={`#${sourceAnchor(n)}`}
+        className="font-semibold text-primary underline underline-offset-2 hover:text-primary-hover"
+        aria-label={`See source ${n}`}
+      >
+        {n}
+      </a>
+    </sup>
+  );
+}
+
 export default function HomePage() {
   return (
     <>
+      {/* Hero */}
       <section
         aria-labelledby="hero-heading"
         className="relative overflow-hidden"
@@ -72,37 +89,37 @@ export default function HomePage() {
 
             <h1
               id="hero-heading"
-              className="mt-6 font-display text-5xl font-semibold leading-[1.05] tracking-tight text-foreground md:text-6xl lg:text-7xl"
+              className="mt-6 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-foreground md:text-5xl lg:text-6xl"
             >
-              The time is{" "}
+              A Stronger Pollard.
+              <br />
               <span className="relative inline-block">
-                <span className="relative z-10">now</span>
+                <span className="relative z-10">A Stronger Needham.</span>
                 <span
                   aria-hidden="true"
-                  className="absolute inset-x-1 bottom-2 -z-0 h-3 rounded-sm bg-accent-soft md:h-4"
+                  className="absolute inset-x-0 bottom-1.5 -z-0 h-3 rounded-sm bg-accent-soft md:h-4"
                 />
-              </span>{" "}
-              for Pollard.
+              </span>
             </h1>
 
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground-muted md:text-xl">
-              Building a sustainable, 21st-century middle school for our
-              students and a stronger future for the Needham community.
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground-muted">
+              An investment in our schools is an investment in our community. By
+              replacing our aging, overcrowded, and under-resourced Pollard
+              middle school with a modern, energy efficient building we protect
+              our property values, open the potential for up to $60 million
+              <FootnoteRef n={1} /> in state funding, and create a resource for
+              every resident.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <CtaLink href={externalLinks.donate} external variant="primary">
-                Donate
+              <CtaLink href="#your-voice" variant="primary">
+                Vote YES in November
               </CtaLink>
-              <CtaLink
-                href={externalLinks.volunteer}
-                external
-                variant="secondary"
-              >
+              <CtaLink href={externalLinks.volunteer} external variant="secondary">
                 Volunteer
               </CtaLink>
-              <CtaLink href="/contact" variant="ghost">
-                Get updates
+              <CtaLink href={externalLinks.donate} external variant="ghost">
+                Donate
               </CtaLink>
             </div>
 
@@ -112,8 +129,8 @@ export default function HomePage() {
           </div>
 
           <aside
-            aria-label="Campaign at a glance"
-            className="relative rounded-3xl border border-border bg-surface p-7 shadow-sm md:p-8"
+            aria-label="Key vote details"
+            className="relative flex flex-col justify-between gap-6 rounded-3xl border border-border bg-surface p-7 shadow-sm md:p-8"
           >
             <div className="flex items-center gap-4">
               <Image
@@ -123,58 +140,226 @@ export default function HomePage() {
                 className="h-16 w-auto rounded-lg shadow-sm"
               />
               <h2 className="font-display text-xl font-semibold text-foreground">
-                At a glance
+                The ask
               </h2>
             </div>
-            <dl className="mt-5 space-y-5">
-              <div>
-                <dt className="text-xs font-semibold uppercase tracking-wider text-foreground-muted">
-                  The ask
-                </dt>
-                <dd className="mt-1 text-base font-medium leading-snug text-foreground">
-                  Pass the debt exclusion override to fund a new Pollard
-                  Middle School.
-                </dd>
-              </div>
-              <div>
-                <dt className="text-xs font-semibold uppercase tracking-wider text-foreground-muted">
-                  Who it serves
-                </dt>
-                <dd className="mt-1 text-base font-medium leading-snug text-foreground">
-                  Every Needham student in grades 6–8.
-                </dd>
-              </div>
-              <div>
-                <dt className="text-xs font-semibold uppercase tracking-wider text-foreground-muted">
-                  Why now
-                </dt>
-                <dd className="mt-1 text-base font-medium leading-snug text-foreground">
-                  Today&apos;s building no longer meets the needs of modern
-                  middle-school learning.
-                </dd>
-              </div>
-            </dl>
-            <div className="mt-6 border-t border-border pt-5">
-              <a
-                href={externalLinks.projectPage}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-hover"
-              >
-                Visit the official project page
-                <span aria-hidden="true">↗</span>
-                <span className="sr-only">(opens in new tab)</span>
-              </a>
+
+            <div className="rounded-2xl bg-primary p-6 text-primary-contrast">
+              <p className="text-xs font-semibold uppercase tracking-wider text-accent-soft">
+                {electionDay.label}
+              </p>
+              <p className="mt-2 font-display text-2xl font-semibold leading-tight">
+                {electionDay.date}
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-white/85">
+                Vote <span className="font-semibold text-white">YES</span> on the
+                debt exclusion to fund a new Pollard Middle School for grades
+                6–8.
+              </p>
             </div>
+
+            <a
+              href={externalLinks.projectPage}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-hover"
+            >
+              Visit the official project page
+              <span aria-hidden="true">↗</span>
+              <span className="sr-only">(opens in new tab)</span>
+            </a>
           </aside>
         </div>
       </section>
 
-      <CampaignSection />
+      {/* Our Foundation */}
+      <section
+        aria-labelledby="foundation-heading"
+        className="border-y border-border bg-surface"
+      >
+        <div className="mx-auto max-w-4xl px-5 py-16 md:px-8 md:py-20">
+          <h2
+            id="foundation-heading"
+            className="text-sm font-semibold uppercase tracking-wider text-accent-hover"
+          >
+            Our Foundation
+          </h2>
+          <figure className="mt-5">
+            <blockquote className="border-l-4 border-accent pl-5 font-display text-2xl font-medium leading-snug text-foreground md:text-3xl">
+              “{foundation.quote}”
+            </blockquote>
+            <figcaption className="mt-3 pl-5 text-sm text-foreground-muted">
+              — {foundation.attribution}
+            </figcaption>
+          </figure>
+          <p className="mt-8 text-lg leading-relaxed text-foreground-muted">
+            {foundation.body}
+          </p>
+        </div>
+      </section>
 
+      {/* 3 Reasons */}
+      <section
+        aria-labelledby="reasons-heading"
+        className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20"
+      >
+        <div className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-wider text-accent-hover">
+            Why Pollard matters to every resident
+          </p>
+          <h2
+            id="reasons-heading"
+            className="mt-3 font-display text-3xl font-semibold leading-tight text-foreground md:text-4xl"
+          >
+            Three reasons this matters — whether or not you have kids in school.
+          </h2>
+        </div>
+
+        <ol className="mt-10 grid gap-5 md:grid-cols-3">
+          {reasons.map((r, i) => (
+            <li
+              key={r.label}
+              className="flex h-full flex-col rounded-2xl border border-border bg-surface p-7"
+            >
+              <span
+                aria-hidden="true"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary font-display text-lg font-semibold text-primary-contrast"
+              >
+                {i + 1}
+              </span>
+              <h3 className="mt-5 font-display text-xl font-semibold text-foreground">
+                {r.label}
+              </h3>
+              <p className="mt-2 leading-relaxed text-foreground-muted">
+                {r.body}
+                {r.note ? <FootnoteRef n={r.note} /> : null}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* The plan in pictures */}
+      <section
+        aria-labelledby="plans-heading"
+        className="border-t border-border bg-surface-muted"
+      >
+        <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wider text-accent-hover">
+                What’s being built — and what we have today
+              </p>
+              <h2
+                id="plans-heading"
+                className="mt-2 font-display text-3xl font-semibold leading-tight text-foreground md:text-4xl"
+              >
+                The plan in pictures.
+              </h2>
+            </div>
+            <p className="max-w-md text-foreground-muted">
+              Site design, plan comparison, and photos of the building Needham
+              has today.
+            </p>
+          </div>
+
+          <div className="mt-8">
+            <ProjectCarousel
+              slides={carouselSlides}
+              ariaLabel="Pollard project plans and current building photos"
+            />
+          </div>
+          <p className="mt-4 text-sm text-foreground-muted">
+            Full-resolution plans and ongoing updates live on the{" "}
+            <a
+              href={externalLinks.projectPage}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-primary hover:text-primary-hover"
+            >
+              official Needham Public Schools project page
+              <span aria-hidden="true"> ↗</span>
+              <span className="sr-only">(opens in new tab)</span>
+            </a>
+            .
+          </p>
+        </div>
+      </section>
+
+      {/* Why Your Voice Matters Now */}
+      <section
+        id="your-voice"
+        aria-labelledby="voice-heading"
+        className="scroll-mt-24 bg-primary text-primary-contrast"
+      >
+        <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-wider text-accent-soft">
+              Why your voice matters now
+            </p>
+            <h2
+              id="voice-heading"
+              className="mt-3 font-display text-3xl font-semibold leading-tight md:text-4xl"
+            >
+              The final step is a community-wide “Yes.”
+            </h2>
+            <div className="mt-6 space-y-4 text-lg leading-relaxed text-white/85">
+              {voice.intro.map((para) => (
+                <p key={para.slice(0, 24)}>{para}</p>
+              ))}
+            </div>
+          </div>
+
+          <p className="mt-10 text-sm font-semibold uppercase tracking-wider text-accent-soft">
+            Here’s how we can win together
+          </p>
+          <ul className="mt-5 grid gap-5 md:grid-cols-3">
+            {voice.ways.map((w) => (
+              <li
+                key={w.label}
+                className="rounded-2xl bg-primary-hover/70 p-7 ring-1 ring-white/10"
+              >
+                <h3 className="font-display text-xl font-semibold">{w.label}</h3>
+                <p className="mt-2 text-white/85">{w.body}</p>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-10 flex flex-wrap gap-3">
+            <a
+              href={externalLinks.volunteer}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-base font-semibold text-foreground hover:bg-accent-hover hover:text-primary-contrast"
+            >
+              Volunteer
+              <span aria-hidden="true">↗</span>
+              <span className="sr-only">(opens in new tab)</span>
+            </a>
+            <a
+              href={externalLinks.donate}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-base font-semibold text-primary hover:bg-white/90"
+            >
+              Donate
+              <span aria-hidden="true">↗</span>
+              <span className="sr-only">(opens in new tab)</span>
+            </a>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 text-base font-semibold text-white hover:bg-white/10"
+            >
+              Get updates
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Official project page */}
       <section
         aria-labelledby="project-page-heading"
-        className="mx-auto max-w-6xl px-5 pt-16 md:px-8 md:pt-20"
+        className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20"
       >
         <div className="relative overflow-hidden rounded-3xl bg-[#162848] p-7 text-white md:p-12">
           <div
@@ -198,11 +383,12 @@ export default function HomePage() {
                 id="project-page-heading"
                 className="mt-3 font-display text-3xl font-semibold leading-tight md:text-4xl"
               >
-                Click here to access the Pollard Middle School Project Page.
+                Plans, financials, and the latest updates — straight from the
+                source.
               </h2>
               <p className="mt-4 max-w-2xl text-white/80">
-                Plans, financial impact tables, meeting minutes, and the
-                latest timeline updates — straight from the source.
+                Plans, financial impact tables, meeting minutes, and the latest
+                timeline updates from the Pollard Building Project.
               </p>
               <div className="mt-7">
                 <a
@@ -221,270 +407,33 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Sources & notes */}
       <section
-        aria-labelledby="plans-heading"
-        className="mx-auto max-w-6xl px-5 pt-16 md:px-8 md:pt-20"
+        aria-labelledby="sources-heading"
+        className="border-t border-border bg-surface-muted"
       >
-        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-wider text-accent-hover">
-              What&apos;s being built — and what we have today
-            </p>
-            <h2
-              id="plans-heading"
-              className="mt-2 font-display text-3xl font-semibold leading-tight text-foreground md:text-4xl"
-            >
-              The plan in pictures.
-            </h2>
-          </div>
-          <p className="max-w-md text-foreground-muted">
-            Site design, plan comparison, and photos of the building Needham
-            has today — the same gallery you&apos;ll find on{" "}
-            <a
-              href="https://pollardnow.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-primary hover:text-primary-hover"
-            >
-              pollardnow.com
-            </a>
-            .
-          </p>
-        </div>
-
-        <div className="mt-8">
-          <ProjectCarousel
-            slides={carouselSlides}
-            ariaLabel="Pollard project plans and current building photos"
-          />
-        </div>
-        <p className="mt-4 text-sm text-foreground-muted">
-          Full-resolution plans and ongoing updates live on the{" "}
-          <a
-            href={externalLinks.projectPage}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold text-primary hover:text-primary-hover"
+        <div className="mx-auto max-w-4xl px-5 py-12 md:px-8 md:py-14">
+          <h2
+            id="sources-heading"
+            className="text-xs font-semibold uppercase tracking-wider text-foreground-muted"
           >
-            official Needham Public Schools project page
-            <span aria-hidden="true"> ↗</span>
-            <span className="sr-only">(opens in new tab)</span>
-          </a>
-          .
-        </p>
-      </section>
-
-      <section
-        aria-labelledby="paths-heading"
-        className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20"
-      >
-        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-wider text-accent-hover">
-              Learn more
-            </p>
-            <h2
-              id="paths-heading"
-              className="mt-2 font-display text-3xl font-semibold leading-tight text-foreground md:text-4xl"
-            >
-              Start where you&apos;re curious.
-            </h2>
-          </div>
-          <p className="max-w-md text-foreground-muted">
-            Whether you&apos;re weighing the override or looking for the next
-            step to help, we&apos;ve grouped the essentials.
-          </p>
-        </div>
-
-        <ul className="mt-10 grid gap-5 md:grid-cols-3">
-          <li>
-            <Link
-              href="/about"
-              className="group flex h-full flex-col justify-between rounded-2xl border border-border bg-surface p-7 transition-colors hover:border-border-strong"
-            >
-              <div>
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent-hover">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M3 9.5 12 4l9 5.5" />
-                    <path d="M5 10v9h14v-9" />
-                    <path d="M9 19v-5h6v5" />
-                  </svg>
-                </span>
-                <h3 className="mt-5 font-display text-xl font-semibold text-foreground">
-                  About the project
-                </h3>
-                <p className="mt-2 text-foreground-muted">
-                  Why a new Pollard, what the debt exclusion override means,
-                  and what changes for students and neighbors.
-                </p>
-              </div>
-              <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:text-primary-hover">
-                Read more
-                <span aria-hidden="true">→</span>
-              </span>
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              href="/faq"
-              className="group flex h-full flex-col justify-between rounded-2xl border border-border bg-surface p-7 transition-colors hover:border-border-strong"
-            >
-              <div>
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent-hover">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <circle cx="12" cy="12" r="9" />
-                    <path d="M9.5 9.5a2.5 2.5 0 0 1 4.9 0c0 1.5-2.4 1.8-2.4 3.5" />
-                    <line x1="12" y1="17" x2="12" y2="17.01" />
-                  </svg>
-                </span>
-                <h3 className="mt-5 font-display text-xl font-semibold text-foreground">
-                  Common questions
-                </h3>
-                <p className="mt-2 text-foreground-muted">
-                  Plain-language answers about cost, timing, the override
-                  process, and the building plan.
-                </p>
-              </div>
-              <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:text-primary-hover">
-                Browse FAQ
-                <span aria-hidden="true">→</span>
-              </span>
-            </Link>
-          </li>
-
-          <li>
-            <a
-              href={externalLinks.projectPage}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex h-full flex-col justify-between rounded-2xl border border-border bg-surface p-7 transition-colors hover:border-border-strong"
-            >
-              <div>
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent-hover">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M14 3h7v7" />
-                    <path d="M21 3l-9 9" />
-                    <path d="M21 14v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h6" />
-                  </svg>
-                </span>
-                <h3 className="mt-5 font-display text-xl font-semibold text-foreground">
-                  Official project page
-                </h3>
-                <p className="mt-2 text-foreground-muted">
-                  Need the source documents? Visit the Needham Public Schools
-                  Pollard Building Project hub for plans and updates.
-                </p>
-              </div>
-              <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:text-primary-hover">
-                Open project page
-                <span aria-hidden="true">↗</span>
-                <span className="sr-only">(opens in new tab)</span>
-              </span>
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      <section
-        aria-labelledby="help-heading"
-        className="bg-primary text-primary-contrast"
-      >
-        <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
-          <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-wider text-accent-soft">
-              Three ways to help
-            </p>
-            <h2
-              id="help-heading"
-              className="mt-3 font-display text-3xl font-semibold leading-tight md:text-4xl"
-            >
-              Pollard Now is powered by neighbors like you.
-            </h2>
-          </div>
-
-          <ul className="mt-10 grid gap-5 md:grid-cols-3">
-            <li className="rounded-2xl bg-primary-hover/70 p-7 ring-1 ring-white/10">
-              <h3 className="font-display text-xl font-semibold">Donate</h3>
-              <p className="mt-2 text-white/85">
-                Help us reach every Needham household with information they
-                can trust.
-              </p>
-              <a
-                href={externalLinks.donate}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center gap-1 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-accent-hover hover:text-primary-contrast"
-              >
-                Give via PayPal
-                <span aria-hidden="true">↗</span>
-                <span className="sr-only">(opens in new tab)</span>
-              </a>
-            </li>
-            <li className="rounded-2xl bg-primary-hover/70 p-7 ring-1 ring-white/10">
-              <h3 className="font-display text-xl font-semibold">Volunteer</h3>
-              <p className="mt-2 text-white/85">
-                Lit-drops, lawn signs, phone banks, or simply sharing your
-                story with a neighbor.
-              </p>
-              <a
-                href={externalLinks.volunteer}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center gap-1 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-accent-hover hover:text-primary-contrast"
-              >
-                Sign up
-                <span aria-hidden="true">↗</span>
-                <span className="sr-only">(opens in new tab)</span>
-              </a>
-            </li>
-            <li className="rounded-2xl bg-primary-hover/70 p-7 ring-1 ring-white/10">
-              <h3 className="font-display text-xl font-semibold">
-                Talk to your neighbors
-              </h3>
-              <p className="mt-2 text-white/85">
-                Word of mouth is the most powerful tool we have. Subscribe to
-                our list for talking points and updates.
-              </p>
-              <Link
-                href="/contact"
-                className="mt-5 inline-flex items-center gap-1 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-accent-hover hover:text-primary-contrast"
-              >
-                Get updates
-                <span aria-hidden="true">→</span>
-              </Link>
-            </li>
-          </ul>
+            Sources &amp; notes
+          </h2>
+          <ol className="mt-4 space-y-2 text-sm leading-relaxed text-foreground-muted">
+            {sources.map((s) => (
+              <li key={s.n} id={sourceAnchor(s.n)} className="scroll-mt-24">
+                <span className="font-semibold text-foreground">{s.n}.</span>{" "}
+                {s.text}{" "}
+                <a
+                  href={`#fnref-${s.n}`}
+                  className="font-semibold text-primary underline underline-offset-2 hover:text-primary-hover"
+                  aria-label={`Back to reference ${s.n}`}
+                >
+                  ↩
+                </a>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
     </>

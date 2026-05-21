@@ -10,7 +10,9 @@
   --primary-hover: #163842;
   --primary-contrast: #ffffff;
   --accent: #c8861d;
-  --accent-hover: #a96e10;
+  /* Darkened to meet WCAG AA (4.5:1) for small label text on light
+     surfaces; also used as the accent button hover background. */
+  --accent-hover: #8a5a0c;
   --accent-soft: #fbe9c4;
   --border: #e3dccc;
   --border-strong: #c9bfa8;

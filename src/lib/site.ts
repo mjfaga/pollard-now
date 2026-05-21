@@ -4,7 +4,7 @@ export const SITE = {
   url: "https://pollard-now.vercel.app",
   name: "Pollard Now",
   shortName: "Pollard Now",
-  tagline: "The Time is Now for Pollard",
+  tagline: "A Stronger Pollard. A Stronger Needham.",
   description:
     "A Needham, Massachusetts community campaign supporting the debt exclusion override to build a new Pollard Middle School for grades 6–8.",
   locale: "en_US",
