@@ -24,20 +24,20 @@ export function SiteHeader() {
           <span className="sr-only">Pollard Now</span>
           <span
             aria-hidden="true"
-            className="hidden font-display text-xl font-semibold tracking-tight text-primary md:inline"
+            className="hidden font-display text-xl font-semibold tracking-tight text-primary lg:inline"
           >
             Pollard Now
           </span>
         </Link>
 
-        <div className="flex items-center gap-2 md:gap-6">
+        <div className="flex items-center gap-2 md:gap-4 lg:gap-6">
           <DesktopNav />
           <div className="hidden md:flex items-center gap-2">
             <a
               href={externalLinks.volunteer}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full border border-border-strong bg-surface px-4 py-2 text-sm font-semibold text-foreground hover:bg-surface-muted"
+              className="hidden lg:inline-flex items-center rounded-full border border-border-strong bg-surface px-4 py-2 text-sm font-semibold text-foreground hover:bg-surface-muted"
             >
               Volunteer
             </a>

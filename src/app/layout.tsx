@@ -26,7 +26,7 @@ const fraunces = Fraunces({
 
 const defaultTitle = `${SITE.name} — ${SITE.tagline}`;
 const defaultSocialDescription =
-  "Building a sustainable, 21st-century middle school for our students and a stronger future for the Needham community.";
+  "An investment in our schools is an investment in our community. Vote YES on the debt exclusion to build a modern, energy-efficient Pollard Middle School for grades 6–8.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),

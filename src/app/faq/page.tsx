@@ -5,7 +5,7 @@ import { CtaLink } from "@/components/cta-button";
 import { JsonLd } from "@/components/json-ld";
 import { externalLinks } from "@/lib/links";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schema";
-import { defaultFaqs } from "@/lib/faqs";
+import { faqs, faqAnswerText } from "@/lib/faqs";
 import { FaqList } from "./faq-list";
 
 export const metadata: Metadata = {
@@ -32,6 +32,21 @@ export default function FaqPage() {
 
       <section className="mx-auto max-w-3xl px-5 py-14 md:px-8 md:py-20">
         <FaqList />
+
+        <p className="mt-6 text-sm text-foreground-muted">
+          Find more FAQs on the{" "}
+          <a
+            href={externalLinks.projectFaqs}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-primary hover:text-primary-hover"
+          >
+            official Pollard Building Project page
+            <span aria-hidden="true"> ↗</span>
+            <span className="sr-only">(opens in new tab)</span>
+          </a>
+          .
+        </p>
 
         <div className="mt-12 rounded-2xl border border-border bg-surface-muted p-7 md:p-8">
           <h2 className="font-display text-2xl font-semibold text-foreground">
@@ -60,10 +75,12 @@ export default function FaqPage() {
         </div>
       </section>
 
-      {/* JSON-LD always reflects the published defaults so search engines
-          and AI answer engines see the canonical set, regardless of any
-          per-browser local edits. */}
-      <JsonLd id="ld-faq" data={faqPageSchema(defaultFaqs)} />
+      <JsonLd
+        id="ld-faq"
+        data={faqPageSchema(
+          faqs.map((f) => ({ q: f.q, a: faqAnswerText(f) })),
+        )}
+      />
       <JsonLd
         id="ld-faq-breadcrumb"
         data={breadcrumbSchema([
