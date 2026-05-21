@@ -93,12 +93,8 @@ export default function HomePage() {
             >
               A Stronger Pollard.
               <br />
-              <span className="relative inline-block">
-                <span className="relative z-10">A Stronger Needham.</span>
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-x-0 bottom-1.5 -z-0 h-3 rounded-sm bg-accent-soft md:h-4"
-                />
+              <span className="underline decoration-accent decoration-[3px] underline-offset-8">
+                A Stronger Needham.
               </span>
             </h1>
 
