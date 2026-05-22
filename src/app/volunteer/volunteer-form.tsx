@@ -3,11 +3,13 @@
 import { useActionState, useId } from "react";
 import { useFormStatus } from "react-dom";
 import { submitVolunteer } from "./actions";
+import { TurnstileWidget } from "./turnstile-widget";
 import {
   volunteerIdeas,
   volunteerInterests,
   volunteerInterestsHeading,
   volunteerSkills,
+  volunteerVerifyLabel,
 } from "@/lib/volunteer";
 
 const initialState = { status: "idle" as const };
@@ -39,7 +41,11 @@ function FieldError({ id, message }: { id: string; message?: string }) {
   );
 }
 
-export function VolunteerForm() {
+export function VolunteerForm({
+  turnstileSiteKey,
+}: {
+  turnstileSiteKey?: string | null;
+}) {
   const [state, formAction] = useActionState(submitVolunteer, initialState);
   const firstId = useId();
   const lastId = useId();
@@ -261,6 +267,15 @@ export function VolunteerForm() {
           className={fieldClass(false)}
         />
       </div>
+
+      {turnstileSiteKey && (
+        <div className="space-y-2">
+          <p className="text-sm font-semibold text-foreground">
+            {volunteerVerifyLabel}
+          </p>
+          <TurnstileWidget siteKey={turnstileSiteKey} resetKey={state} />
+        </div>
+      )}
 
       <div className="flex flex-wrap items-center gap-4">
         <SubmitButton />

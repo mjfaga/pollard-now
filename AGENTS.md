@@ -9,8 +9,10 @@ This version has breaking changes — APIs, conventions, and file structure may 
 A community campaign website for the **Pollard Middle School debt exclusion override** in Needham,
 Massachusetts (vote: Tuesday, November 3, 2026). It is a static-first marketing site: a few
 editorial pages rendered from a typed "copy deck" of content, plus SEO/structured data, on-page
-translation, and accessible interactions. **No CMS, no database, no auth, no runtime environment
-variables.**
+translation, and accessible interactions. **No CMS, no database, no auth.** The only runtime
+configuration is the optional Cloudflare Turnstile keys that protect the volunteer form from spam —
+without them the site still runs (see
+[DEVELOPMENT](docs/reference/DEVELOPMENT.md#environment-variables)).
 
 ## Technology Stack
 
@@ -46,7 +48,9 @@ npm run start      # Serve the production build
 npm run lint       # Run ESLint
 ```
 
-There is **no test suite** and **no `.env`** — the site needs no environment variables to run.
+There is **no test suite**. The site runs with **no environment variables**; the only optional
+config is the Cloudflare Turnstile keys for the volunteer form (see
+[DEVELOPMENT](docs/reference/DEVELOPMENT.md#environment-variables)). Never commit `.env*` or secrets.
 
 ## Code Conventions
 

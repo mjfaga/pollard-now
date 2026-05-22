@@ -5,7 +5,8 @@
 - **Node.js 20+** (22 LTS recommended)
 - **npm** (ships with Node) — the repo uses `package-lock.json`
 
-No database, no accounts, and no environment variables are needed to run the site locally.
+No database or accounts are required, and the site runs with no environment variables — the
+Cloudflare Turnstile keys are optional (see [Environment variables](#environment-variables)).
 
 ## Setup
 
@@ -33,10 +34,32 @@ affected pages (desktop + mobile widths), and by running `npm run lint`.
 
 ## Environment variables
 
-**None.** The site reads no `process.env` values at runtime, so there is no `.env` / `.env.example`.
-The closest thing to configuration is `src/lib/site.ts`, which holds the canonical URL and site
-identity as plain constants. Update the domain there (for example, when moving from
-`pollard-now.vercel.app` to a custom domain).
+The site runs with **no environment variables** — every page works without configuration, and
+`src/lib/site.ts` holds the canonical URL and site identity as plain constants (update the domain
+there, e.g. when moving from `pollard-now.vercel.app` to a custom domain).
+
+The **only** optional config is **Cloudflare Turnstile**, the spam check on the volunteer form
+(`/volunteer`). Set **both** keys or **neither** — with neither set, the form falls back to its
+honeypot only:
+
+| Variable | Scope | Purpose |
+| --- | --- | --- |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | public (sent to the browser) | Renders the Turnstile widget |
+| `TURNSTILE_SECRET_KEY` | server only — never commit | Verifies the token in the server action |
+
+**Get keys:** in the Cloudflare dashboard → **Turnstile**, create a free widget and add the
+production domain (plus `localhost` for dev). Cloudflare also publishes always-pass test keys for
+local development.
+
+**Local dev:** put them in `.env.local` (git-ignored via `.env*`):
+
+```bash
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA
+TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+```
+
+**Production:** add both under Vercel → Project → **Settings → Environment Variables**, then
+redeploy. The secret must never be committed (it is covered by `.gitignore`'s `.env*`).
 
 ## Project layout
 

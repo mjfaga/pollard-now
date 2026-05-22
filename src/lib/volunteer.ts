@@ -68,3 +68,6 @@ export const volunteerIdeas = {
   label:
     "Share any ideas you have to help us get the word out and engage with the community!",
 } as const;
+
+export const volunteerVerifyLabel =
+  "Before submitting, please confirm you're human:";
