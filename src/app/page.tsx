@@ -110,7 +110,7 @@ export default function HomePage() {
               <CtaLink href="#your-voice" variant="primary">
                 Vote YES in November
               </CtaLink>
-              <CtaLink href={externalLinks.volunteer} external variant="secondary">
+              <CtaLink href="/volunteer" variant="secondary">
                 Volunteer
               </CtaLink>
               <CtaLink href={externalLinks.donate} external variant="ghost">
@@ -342,16 +342,12 @@ export default function HomePage() {
           </ul>
 
           <div className="mt-10 flex flex-wrap gap-3">
-            <a
-              href={externalLinks.volunteer}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/volunteer"
               className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-base font-semibold text-foreground hover:bg-accent-hover hover:text-primary-contrast"
             >
               Volunteer
-              <span aria-hidden="true">↗</span>
-              <span className="sr-only">(opens in new tab)</span>
-            </a>
+            </Link>
             <a
               href={externalLinks.donate}
               target="_blank"

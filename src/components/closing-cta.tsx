@@ -20,7 +20,7 @@ export function ClosingCta({ heading, body }: Props) {
           {body}
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
-          <CtaLink href={externalLinks.volunteer} external variant="primary">
+          <CtaLink href="/volunteer" variant="primary">
             Volunteer
           </CtaLink>
           <CtaLink href={externalLinks.donate} external variant="secondary">

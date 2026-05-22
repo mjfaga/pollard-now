@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHeader } from "@/components/page-header";
 import { ContactForm } from "./contact-form";
 import { SubscribeForm } from "./subscribe-form";
@@ -75,24 +76,18 @@ export default function ContactPage() {
               One-time gifts via PayPal — every dollar funds outreach.
             </p>
           </a>
-          <a
-            href={externalLinks.volunteer}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/volunteer"
             className="rounded-2xl border border-border bg-surface p-6 transition-colors hover:border-border-strong"
           >
             <h3 className="font-display text-lg font-semibold text-foreground">
-              Volunteer{" "}
-              <span aria-hidden="true" className="text-foreground-muted">
-                ↗
-              </span>
-              <span className="sr-only">(opens in new tab)</span>
+              Volunteer
             </h3>
             <p className="mt-2 text-sm text-foreground-muted">
               Tell us what you&apos;d love to help with — we&apos;ll match you
               to a real task.
             </p>
-          </a>
+          </Link>
           <a
             href={externalLinks.projectPage}
             target="_blank"
