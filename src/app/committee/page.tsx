@@ -41,15 +41,15 @@ export default function CommitteePage() {
           {committee.map((m) => (
             <li
               key={m.id}
-              className="flex flex-col overflow-hidden rounded-3xl border border-border bg-surface"
+              className="flex flex-col rounded-3xl border border-border bg-surface p-7 md:p-8"
             >
-              <div className="relative aspect-[4/5] bg-surface-muted">
+              <div className="relative aspect-[4/5] w-52 overflow-hidden rounded-2xl bg-surface-muted sm:w-60">
                 {m.image ? (
                   <Image
                     src={m.image}
                     alt={`Headshot of ${m.name}`}
                     fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
+                    sizes="(min-width: 640px) 15rem, 13rem"
                     className="object-cover"
                     style={{ objectPosition: focus[m.id] ?? "50% 30%" }}
                   />
@@ -58,14 +58,14 @@ export default function CommitteePage() {
                     aria-hidden="true"
                     className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary to-[#162848]"
                   >
-                    <span className="font-display text-6xl font-semibold text-accent-soft">
+                    <span className="font-display text-4xl font-semibold text-accent-soft">
                       {m.initials}
                     </span>
                   </div>
                 )}
               </div>
 
-              <div className="flex flex-1 flex-col p-7 md:p-8">
+              <div className="mt-6 flex flex-1 flex-col">
                 <p className="text-xs font-semibold uppercase tracking-wider text-accent-hover">
                   {m.role}
                 </p>

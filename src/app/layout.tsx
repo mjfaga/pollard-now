@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Fraunces } from "next/font/google";
+import { Montserrat, Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
@@ -11,17 +11,21 @@ import { organizationSchema, websiteSchema } from "@/lib/schema";
 
 const TRANSLATE_LANGS = "ar,zh-CN,nl,en,fr,de,it,pt,ru,es";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Body sans. Inter pairs cleanly with Montserrat and is highly legible
+// for long-form copy (committee bios, FAQ answers).
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+// Display/headings. Montserrat is the campaign's collateral typeface
+// (postcard + sign body), a geometric sans that complements the wide
+// "Pollard NOW" wordmark.
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
   display: "swap",
-  axes: ["opsz"],
 });
 
 const defaultTitle = `${SITE.name} — ${SITE.tagline}`;
@@ -100,7 +104,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${inter.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <a href="#main" className="skip-link">
