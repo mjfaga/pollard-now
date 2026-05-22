@@ -124,14 +124,12 @@ export function MobileNav() {
           >
             Donate
           </a>
-          <a
-            href={externalLinks.volunteer}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/volunteer"
             className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 font-semibold text-foreground"
           >
             Volunteer
-          </a>
+          </Link>
         </div>
       </nav>
     </div>

@@ -33,14 +33,12 @@ export function SiteHeader() {
         <div className="flex items-center gap-2 md:gap-4 lg:gap-6">
           <DesktopNav />
           <div className="hidden md:flex items-center gap-2">
-            <a
-              href={externalLinks.volunteer}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/volunteer"
               className="hidden lg:inline-flex items-center rounded-full border border-border-strong bg-surface px-4 py-2 text-sm font-semibold text-foreground hover:bg-surface-muted"
             >
               Volunteer
-            </a>
+            </Link>
             <a
               href={externalLinks.donate}
               target="_blank"

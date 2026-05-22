@@ -28,16 +28,12 @@ export function SiteFooter() {
             >
               Join the Mailing List
             </Link>
-            <a
-              href={externalLinks.volunteer}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 rounded-full bg-accent px-5 py-3 text-sm font-semibold text-foreground hover:bg-accent-hover hover:text-primary-contrast"
+            <Link
+              href="/volunteer"
+              className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-foreground hover:bg-accent-hover hover:text-primary-contrast"
             >
               Volunteer
-              <span aria-hidden="true">↗</span>
-              <span className="sr-only">(opens in new tab)</span>
-            </a>
+            </Link>
             <a
               href={externalLinks.donate}
               target="_blank"
@@ -118,18 +114,12 @@ export function SiteFooter() {
               </a>
             </li>
             <li>
-              <a
-                href={externalLinks.volunteer}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/volunteer"
                 className="text-foreground hover:text-primary"
               >
-                Volunteer sign-up{" "}
-                <span aria-hidden="true" className="text-foreground-muted">
-                  ↗
-                </span>
-                <span className="sr-only">(opens in new tab)</span>
-              </a>
+                Volunteer sign-up
+              </Link>
             </li>
             <li>
               <a
