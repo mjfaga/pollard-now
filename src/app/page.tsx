@@ -72,6 +72,10 @@ export default function HomePage() {
           aria-hidden="true"
           className="absolute inset-x-0 top-0 -z-10 h-[640px] bg-gradient-to-b from-surface-muted via-background to-background"
         />
+        <div
+          aria-hidden="true"
+          className="absolute -top-32 right-[-12rem] -z-10 h-[420px] w-[420px] rounded-full bg-primary opacity-10 blur-3xl"
+        />
         <div className="mx-auto grid max-w-6xl gap-12 px-5 pb-16 pt-14 md:grid-cols-[1.15fr_1fr] md:gap-16 md:px-8 md:pb-24 md:pt-20">
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">

@@ -60,8 +60,9 @@ copy by default (set via `--font-sans`). Both are variable fonts loaded through 
 ## Iconography & decoration
 
 - Inline SVGs are used for small icons (e.g. the FAQ +/- toggle). Mark them `aria-hidden="true"`.
-- Decorative flourishes (blurred "orbs" using `accent-soft`, the hero underline using `accent`) are
-  purely visual and must be `aria-hidden` / non-interactive.
+- Decorative flourishes (blurred "orbs" — a cool `primary` glow in the hero, a warm `accent` glow on
+  the dark project-page CTA — and the hero underline using `accent`) are purely visual and must be
+  `aria-hidden` / non-interactive.
 - The favicon (`app/icon.svg`) is a navy badge with a white "O" + gold check, with a light/dark
   variant via an embedded `@media (prefers-color-scheme: dark)` block.
 
