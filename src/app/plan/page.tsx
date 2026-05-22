@@ -99,7 +99,7 @@ export default function PlanPage() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-background px-5 py-3 text-sm font-semibold text-primary hover:bg-surface-muted"
           >
-            View the official Pollard Building Project page
+            View the official Pollard Middle School Project page
             <span aria-hidden="true">↗</span>
             <span className="sr-only">(opens in new tab)</span>
           </a>

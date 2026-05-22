@@ -154,15 +154,28 @@ export const constructionCost = {
 };
 
 // HOME — hero "The ask" card supporting facts shown beneath the Election
-// Day box. Figures echo the copy elsewhere on the page (state funding,
-// debt-exclusion structure, the building itself).
+// Day box. Truncated versions of the four "Why Now" points on the Plan
+// page (see `whyNow.points`) — keep the two in sync.
 export const heroAside = {
   intro: "Here’s what’s on the ballot this November — and why it matters.",
   facts: [
-    "Up to $60 million in state funding at stake",
-    "A temporary, Pollard-only debt exclusion",
-    "A modern school for grades 6–8, replacing a 70-year-old building",
-  ],
+    {
+      label: "Beat the Inflation Trap",
+      body: "Delaying construction adds millions in costs every year.",
+    },
+    {
+      label: "Secure State Funding",
+      body: "Opportunity to receive state funding for up to 20% of the project.",
+    },
+    {
+      label: "Replace 1956 Infrastructure",
+      body: "Swaps failing electrical, plumbing, and HVAC for modern, up-to-code systems.",
+    },
+    {
+      label: "End Costly Emergency Repairs",
+      body: "Eliminates expensive maintenance on obsolete systems and old trailers.",
+    },
+  ] satisfies Pillar[],
 };
 
 // Key date used across the site.
