@@ -78,15 +78,23 @@ into a hidden `#google_translate_element`. A custom `LanguageSwitcher` component
 ## Forms
 
 The contact and subscribe forms post to **server actions** in `src/app/contact/actions.ts`
-(`submitContact`, `subscribeEmail`). Today they:
+(`submitContact`, `subscribeEmail`). Both:
 
 - validate input (required fields + email shape) and return a typed `ActionState`,
-- include a honeypot (`website`) field for basic spam resistance,
-- and **stub delivery** — there is a `TODO` to wire a real email/CRM destination.
+- include a honeypot (`website`) field for basic spam resistance.
+
+**Subscribe → Mailchimp.** `subscribeEmail` delivers signups to Mailchimp via `addSubscriber()`
+in `src/lib/mailchimp.ts`. It upserts the contact (`PUT …/members/{md5(email)}`, single opt-in via
+`status_if_new: "subscribed"`, mapping first/last name to `FNAME`/`LNAME`) into the audience set by
+`MAILCHIMP_AUDIENCE_ID`, authenticating with `MAILCHIMP_API_KEY`
+(see [DEVELOPMENT.md](DEVELOPMENT.md#environment-variables)). On any API/network failure it returns a
+typed error rather than a false success.
+
+**Contact form** still **stubs delivery** — there is a `TODO` to wire a real email destination.
+Before sending those submissions anywhere, get an approved, secure destination.
 
 The client form components (`contact-form.tsx`, `subscribe-form.tsx`) use these actions with
-`useActionState` for inline validation and status messaging. Before sending real submissions
-anywhere, get an approved, secure destination (see [AGENTS.md](../../AGENTS.md#ask-first)).
+`useActionState` for inline validation and status messaging.
 
 ## Assets
 

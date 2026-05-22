@@ -5,7 +5,9 @@
 - **Node.js 20+** (22 LTS recommended)
 - **npm** (ships with Node) — the repo uses `package-lock.json`
 
-No database, no accounts, and no environment variables are needed to run the site locally.
+No database or accounts are needed to run the site locally. The only environment variables are the
+two Mailchimp keys that power the subscribe form (see [Environment variables](#environment-variables));
+the rest of the site renders fine without them.
 
 ## Setup
 
@@ -33,10 +35,25 @@ affected pages (desktop + mobile widths), and by running `npm run lint`.
 
 ## Environment variables
 
-**None.** The site reads no `process.env` values at runtime, so there is no `.env` / `.env.example`.
-The closest thing to configuration is `src/lib/site.ts`, which holds the canonical URL and site
-identity as plain constants. Update the domain there (for example, when moving from
-`pollard-now.vercel.app` to a custom domain).
+The subscribe form delivers signups to Mailchimp via a server action, which needs two values:
+
+| Variable                | Required for      | Notes                                                            |
+| ----------------------- | ----------------- | --------------------------------------------------------------- |
+| `MAILCHIMP_API_KEY`     | Subscribe form    | Secret. From Mailchimp → Account → Extras → API keys. Includes the datacenter suffix, e.g. `…-us4`. |
+| `MAILCHIMP_AUDIENCE_ID` | Subscribe form    | The target audience/list id. "Pollard Now Committee 2026" = `301eaebfa2`. |
+
+Copy `.env.example` to `.env.local` and fill in the key for local dev:
+
+```bash
+cp .env.example .env.local   # then paste your MAILCHIMP_API_KEY
+```
+
+`.env.local` is git-ignored — **never commit real secrets**. Without these set, the site still runs,
+but submitting the subscribe form returns a friendly error instead of adding the contact. The
+keys must also be added to the Vercel project (Preview + Production) for deployed environments.
+
+Other configuration lives in `src/lib/site.ts` (canonical URL and site identity as plain constants);
+update the domain there when moving to a custom domain.
 
 ## Project layout
 
@@ -75,6 +92,8 @@ Hosting is on **Vercel** (project `pollard-now`).
 - **Production**: merging to `main` triggers a production deploy.
 - **Previews**: every pull request gets its own preview URL.
 - **Build command**: `npm run build` (Vercel default for Next.js). No build-time env vars required.
+- **Runtime env vars**: set `MAILCHIMP_API_KEY` and `MAILCHIMP_AUDIENCE_ID` on the Vercel project
+  (Preview + Production) so the subscribe form can deliver signups.
 
 For local production parity:
 
