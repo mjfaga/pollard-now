@@ -14,7 +14,7 @@ export const foundation = {
     "The very foundation of our town was built on the commitment to educate our children, recognizing that a strong school system is the heartbeat of a thriving community.",
   attribution:
     "Adapted from the 1711 Petition for the Incorporation of Needham",
-  body: "We are replacing a 70-year old school into a facility designed for the next century. By moving forward now, we can leverage a state partnership with the Massachusetts School Building Association (MSBA) to build an energy efficient school that meets the needs of students and benefits our entire town—all while maintaining smart fiscal responsibility.",
+  body: "We are replacing a 70-year old school into a facility designed for the next century. By moving forward now, we can leverage a state partnership with the Massachusetts School Building Authority (MSBA) to build an energy efficient school that meets the needs of students and benefits our entire town—all while maintaining smart fiscal responsibility.",
 };
 
 // HOME — "3 Reasons Why Pollard Matters to Every Resident". `note`
@@ -131,6 +131,38 @@ export const finances = {
       body: "We borrow at low municipal bond rates, thanks to the town’s excellent AAA rating and pay it back over time, effectively “locking in” today’s construction prices while spreading the cost across the generations who will use the school.",
     },
   ] satisfies Pillar[],
+};
+
+// THE PROJECT (about) — "Why Now?" inflation visual. Figures come from
+// the Massachusetts School Building Authority's published cost data for
+// new school construction ($/sq ft). The endpoints are MSBA's reported
+// figures — about $440/sq ft in 2019 climbing to roughly $698/sq ft by
+// the end of 2023, a ~59% rise over five years. The chart draws a trend
+// curve between those anchors (it does not assert exact intermediate
+// years).
+export const constructionCost = {
+  eyebrow: "The cost of waiting",
+  stat: "+59%",
+  statCaption:
+    "rise in Massachusetts new-school construction cost per square foot over five years",
+  blurb:
+    "Each year of delay locks in higher construction costs — pushing the project’s price up by millions before a shovel hits the ground.",
+  unit: "/sq ft",
+  start: { year: "2019", value: 440 },
+  end: { year: "2023", value: 698 },
+  sourceLabel: "Massachusetts School Building Authority cost data",
+};
+
+// HOME — hero "The ask" card supporting facts shown beneath the Election
+// Day box. Figures echo the copy elsewhere on the page (state funding,
+// debt-exclusion structure, the building itself).
+export const heroAside = {
+  intro: "Here’s what’s on the ballot this November — and why it matters.",
+  facts: [
+    "Up to $60 million in state funding at stake",
+    "A temporary, Pollard-only debt exclusion",
+    "A modern school for grades 6–8, replacing a 70-year-old building",
+  ],
 };
 
 // Key date used across the site.

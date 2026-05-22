@@ -26,7 +26,7 @@ export const faqs: ReadonlyArray<Faq> = [
   {
     id: "comparison",
     q: "Is the cost higher than other schools of its kind?",
-    a: "No. It is the lowest cost of the projects proposed for an 8/26/25 Project Scope and Budget agreement, to be signed by the town and the MSBA. It represents the maximum amount the project can be.",
+    a: "No. It is the lowest cost of the projects proposed for an 8/26/26 Project Scope and Budget agreement, to be signed by the town and the MSBA. It represents the maximum amount the project can be.",
   },
   {
     id: "operating-budget",
@@ -96,7 +96,7 @@ export const faqs: ReadonlyArray<Faq> = [
   {
     id: "vote-fails",
     q: "What happens if the vote fails?",
-    a: "A failed local vote will likely result in the district having to submit a brand-new Statement of Interest to the Massachusetts School Board Association (MSBA) and await a new invitation to enter the program. We would not receive the state funding at this time, construction costs would continue to rise (4-6% annually), and we would still need to spend incremental dollars on the building for maintenance and emergency repairs if required.",
+    a: "A failed local vote will likely result in the district having to submit a brand-new Statement of Interest to the Massachusetts School Building Authority (MSBA) and await a new invitation to enter the program. We would not receive the state funding at this time, construction costs would continue to rise (4-6% annually), and we would still need to spend incremental dollars on the building for maintenance and emergency repairs if required.",
   },
 ];
 

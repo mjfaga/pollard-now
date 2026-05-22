@@ -20,7 +20,7 @@ variables.**
 | React        | 19.2    | UI library                                               |
 | TypeScript   | 5.x     | Type safety (strict mode)                                |
 | Tailwind CSS | 4.x     | Styling via utilities + CSS-variable design tokens       |
-| `next/font`  | —       | Self-hosted Geist (sans) + Fraunces (display serif)      |
+| `next/font`  | —       | Self-hosted Inter (sans) + Montserrat (display)         |
 | ESLint       | 9.x     | `eslint-config-next` (core-web-vitals + typescript)      |
 | npm          | —       | Package manager (`package-lock.json`)                    |
 | Vercel       | —       | Hosting + preview deploys                                 |
@@ -83,7 +83,7 @@ See [EDIT_CONTENT](docs/skills/EDIT_CONTENT.md).
 - **Tailwind v4 with design tokens.** Use semantic token classes (`bg-primary`, `text-foreground`,
   `border-border`, `bg-accent`), not raw hex or arbitrary colors. Tokens are defined as CSS variables
   in `src/app/globals.css` and exposed to Tailwind via `@theme inline`.
-- Fonts are applied with the `font-sans` (Geist) and `font-display` (Fraunces) families.
+- Fonts are applied with the `font-sans` (Inter) and `font-display` (Montserrat) families.
 - See [DESIGN_SYSTEM](docs/reference/DESIGN_SYSTEM.md).
 
 ### Accessibility (non-negotiable)

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import { FeatureList } from "@/components/feature-list";
+import { CostTrendChart } from "@/components/cost-trend-chart";
 import { ClosingCta } from "@/components/closing-cta";
 import { JsonLd } from "@/components/json-ld";
 import { externalLinks } from "@/lib/links";
@@ -47,6 +48,7 @@ export default function PlanPage() {
           {whyNow.intro}
         </p>
         <FeatureList points={whyNow.points} />
+        <CostTrendChart />
       </section>
 
       {/* The Plan */}

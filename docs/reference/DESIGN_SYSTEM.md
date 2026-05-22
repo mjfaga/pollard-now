@@ -12,9 +12,9 @@ Defined in `:root` in `globals.css` and available as Tailwind classes (`bg-*`, `
 
 | Token              | Value     | Role                                                        |
 | ------------------ | --------- | ---------------------------------------------------------- |
-| `background`       | `#faf7f2` | Page background (warm cream)                               |
+| `background`       | `#f6f9fb` | Page background (light cool blue)                          |
 | `surface`          | `#ffffff` | Cards / raised surfaces                                    |
-| `surface-muted`    | `#f3ede2` | Subtle fills, hover backgrounds                            |
+| `surface-muted`    | `#e6eff4` | Subtle fills, hover backgrounds (light blue-gray)         |
 | `foreground`       | `#15243a` | Primary text (deep navy)                                   |
 | `foreground-muted` | `#4d5d72` | Secondary text                                             |
 | `primary`          | `#1f4e5f` | Brand teal — primary buttons, headings, active nav         |
@@ -23,8 +23,8 @@ Defined in `:root` in `globals.css` and available as Tailwind classes (`bg-*`, `
 | `accent`           | `#c8861d` | Gold accent — highlights, markers (darkened for AA on text)|
 | `accent-hover`     | `#8a5a0c` | Accent button hover / accent label text                    |
 | `accent-soft`      | `#fbe9c4` | Soft gold wash — eyebrow labels, background orbs           |
-| `border`           | `#e3dccc` | Default hairline borders                                   |
-| `border-strong`    | `#c9bfa8` | Emphasized borders                                         |
+| `border`           | `#d1dde6` | Default hairline borders                                   |
+| `border-strong`    | `#a6bbc9` | Emphasized borders                                         |
 | `ring`             | `#1f4e5f` | Focus-visible outline color                                |
 | `danger`           | `#a3252d` | Errors / destructive                                       |
 | `success`          | `#1f6f43` | Success states                                             |
@@ -43,11 +43,12 @@ families:
 
 | Family         | Font     | Tailwind class | Use                                    |
 | -------------- | -------- | -------------- | -------------------------------------- |
-| `--font-sans`  | Geist    | `font-sans`    | Body copy, UI, navigation (default)    |
-| `--font-display` | Fraunces | `font-display` | Display headings, hero, section titles |
+| `--font-sans`  | Inter      | `font-sans`    | Body copy, UI, navigation (default)    |
+| `--font-display` | Montserrat | `font-display` | Display headings, hero, section titles |
 
-Fraunces is loaded with the optical-size axis (`opsz`) for crisp large headings. The body uses Geist
-by default (set on `<body>` via `--font-sans`).
+Montserrat is the campaign's collateral typeface (postcard + sign) — a geometric sans that
+complements the wide "Pollard NOW" wordmark — and is used for display headings. Inter handles body
+copy by default (set via `--font-sans`). Both are variable fonts loaded through `next/font/google`.
 
 ## Spacing & layout
 

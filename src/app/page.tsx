@@ -6,7 +6,7 @@ import {
   type CarouselSlide,
 } from "@/components/project-carousel";
 import { externalLinks } from "@/lib/links";
-import { electionDay, foundation, reasons, voice } from "@/lib/project";
+import { electionDay, foundation, heroAside, reasons, voice } from "@/lib/project";
 import { sources, sourceAnchor } from "@/lib/sources";
 import logo from "../../public/images/pollard-now-logo-full.png";
 import siteDesign from "../../public/images/carousel/image.png";
@@ -72,11 +72,6 @@ export default function HomePage() {
           aria-hidden="true"
           className="absolute inset-x-0 top-0 -z-10 h-[640px] bg-gradient-to-b from-surface-muted via-background to-background"
         />
-        <div
-          aria-hidden="true"
-          className="absolute -top-32 right-[-12rem] -z-10 h-[420px] w-[420px] rounded-full bg-accent-soft blur-3xl opacity-70"
-        />
-
         <div className="mx-auto grid max-w-6xl gap-12 px-5 pb-16 pt-14 md:grid-cols-[1.15fr_1fr] md:gap-16 md:px-8 md:pb-24 md:pt-20">
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
@@ -126,7 +121,7 @@ export default function HomePage() {
 
           <aside
             aria-label="Key vote details"
-            className="relative flex flex-col justify-between gap-6 rounded-3xl border border-border bg-surface p-7 shadow-sm md:p-8"
+            className="relative flex flex-col gap-6 rounded-3xl border border-border bg-surface p-7 shadow-sm md:p-8"
           >
             <div className="flex items-center gap-4">
               <Image
@@ -139,6 +134,10 @@ export default function HomePage() {
                 The ask
               </h2>
             </div>
+
+            <p className="text-sm leading-relaxed text-foreground-muted">
+              {heroAside.intro}
+            </p>
 
             <div className="rounded-2xl bg-primary p-6 text-primary-contrast">
               <p className="text-xs font-semibold uppercase tracking-wider text-accent-soft">
@@ -154,16 +153,33 @@ export default function HomePage() {
               </p>
             </div>
 
-            <a
-              href={externalLinks.projectPage}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-hover"
-            >
-              Visit the official project page
-              <span aria-hidden="true">↗</span>
-              <span className="sr-only">(opens in new tab)</span>
-            </a>
+            <ul className="space-y-3">
+              {heroAside.facts.map((fact) => (
+                <li
+                  key={fact}
+                  className="flex gap-3 text-sm leading-relaxed text-foreground-muted"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent"
+                  />
+                  {fact}
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-auto border-t border-border pt-4">
+              <a
+                href={externalLinks.projectPage}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-hover"
+              >
+                Visit the official project page
+                <span aria-hidden="true">↗</span>
+                <span className="sr-only">(opens in new tab)</span>
+              </a>
+            </div>
           </aside>
         </div>
       </section>

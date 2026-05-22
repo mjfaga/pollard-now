@@ -7,6 +7,8 @@ export const externalLinks = {
     "https://sites.google.com/needham.k12.ma.us/pollardbuildingproject/home",
   projectFaqs:
     "https://sites.google.com/needham.k12.ma.us/pollardbuildingproject/faqs",
+  costData:
+    "https://info.massschoolbuildings.org/TabPub/TableauCostData.aspx",
 } as const;
 
 export const navLinks = [
