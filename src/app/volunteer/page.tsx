@@ -19,6 +19,9 @@ export const metadata: Metadata = {
 };
 
 export default function VolunteerPage() {
+  // Public site key (safe to expose). When unset, the form runs honeypot-only.
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? null;
+
   return (
     <>
       <PageHeader
@@ -34,7 +37,7 @@ export default function VolunteerPage() {
           </h2>
           <p className="mt-2 text-foreground-muted">{volunteerIntro.formNote}</p>
           <div className="mt-7">
-            <VolunteerForm />
+            <VolunteerForm turnstileSiteKey={turnstileSiteKey} />
           </div>
         </div>
       </section>

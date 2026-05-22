@@ -1,6 +1,7 @@
 "use server";
 
 import { volunteerInterests } from "@/lib/volunteer";
+import { verifyTurnstileToken } from "@/lib/turnstile";
 
 type ActionState =
   | { status: "idle" }
@@ -69,6 +70,19 @@ export async function submitVolunteer(
       status: "error",
       message: "Please correct the highlighted fields and try again.",
       fieldErrors,
+    };
+  }
+
+  // Bot check (no-op unless Turnstile is configured). Runs after field
+  // validation so users fixing field errors don't burn a single-use token.
+  const turnstilePassed = await verifyTurnstileToken(
+    String(formData.get("cf-turnstile-response") ?? ""),
+  );
+  if (!turnstilePassed) {
+    return {
+      status: "error",
+      message:
+        "We couldn't confirm you're human. Please complete the verification and try again.",
     };
   }
 
