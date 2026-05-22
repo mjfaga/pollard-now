@@ -160,14 +160,19 @@ export default function HomePage() {
             <ul className="space-y-3">
               {heroAside.facts.map((fact) => (
                 <li
-                  key={fact}
+                  key={fact.label}
                   className="flex gap-3 text-sm leading-relaxed text-foreground-muted"
                 >
                   <span
                     aria-hidden="true"
                     className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent"
                   />
-                  {fact}
+                  <span>
+                    <span className="font-semibold text-foreground">
+                      {fact.label}:
+                    </span>{" "}
+                    {fact.body}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -179,7 +184,7 @@ export default function HomePage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-hover"
               >
-                Visit the official project page
+                Visit the official Pollard Middle School Project page
                 <span aria-hidden="true">↗</span>
                 <span className="sr-only">(opens in new tab)</span>
               </a>
@@ -293,7 +298,7 @@ export default function HomePage() {
               rel="noopener noreferrer"
               className="font-semibold text-primary hover:text-primary-hover"
             >
-              official Needham Public Schools project page
+              official Pollard Middle School Project page
               <span aria-hidden="true"> ↗</span>
               <span className="sr-only">(opens in new tab)</span>
             </a>

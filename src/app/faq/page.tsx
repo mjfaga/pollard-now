@@ -41,7 +41,7 @@ export default function FaqPage() {
             rel="noopener noreferrer"
             className="font-semibold text-primary hover:text-primary-hover"
           >
-            official Pollard Building Project page
+            official Pollard Middle School Project page
             <span aria-hidden="true"> ↗</span>
             <span className="sr-only">(opens in new tab)</span>
           </a>
@@ -54,7 +54,8 @@ export default function FaqPage() {
           </h2>
           <p className="mt-2 max-w-xl text-foreground-muted">
             Send us a note — a real human reads every message. Or jump
-            straight to the official project page for source documents.
+            straight to the official Pollard Middle School Project page for
+            source documents.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
