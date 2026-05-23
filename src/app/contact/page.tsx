@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/page-header";
 import { ContactForm } from "./contact-form";
 import { SubscribeForm } from "./subscribe-form";
 import { JsonLd } from "@/components/json-ld";
+import { SocialLinks } from "@/components/social-links";
 import { externalLinks } from "@/lib/links";
 import { breadcrumbSchema } from "@/lib/schema";
 
@@ -95,7 +96,7 @@ export default function ContactPage() {
             className="rounded-2xl border border-border bg-surface p-6 transition-colors hover:border-border-strong"
           >
             <h3 className="font-display text-lg font-semibold text-foreground">
-              Official project page{" "}
+              Official Pollard Middle School Project page{" "}
               <span aria-hidden="true" className="text-foreground-muted">
                 ↗
               </span>
@@ -106,6 +107,19 @@ export default function ContactPage() {
               Schools.
             </p>
           </a>
+        </div>
+      </section>
+
+      <section className="border-t border-border bg-surface-muted">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-5 py-12 text-center md:px-8">
+          <h2 className="font-display text-xl font-semibold text-foreground">
+            Follow the campaign
+          </h2>
+          <p className="max-w-md text-sm text-foreground-muted">
+            Events, reminders, and ways to help — follow Pollard Now on
+            Facebook and @pollardnow26 on Instagram.
+          </p>
+          <SocialLinks variant="default" />
         </div>
       </section>
 

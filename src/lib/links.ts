@@ -9,6 +9,25 @@ export const externalLinks = {
     "https://info.massschoolbuildings.org/TabPub/TableauCostData.aspx",
 } as const;
 
+// Official campaign social profiles. `platform` keys the icon in
+// components/social-links.tsx; `handle` is the human-readable name shown
+// to screen readers. These URLs are also emitted in the Organization
+// schema's `sameAs` (see lib/schema.ts).
+export const socialLinks = [
+  {
+    platform: "facebook",
+    label: "Facebook",
+    handle: "Pollard Now",
+    href: "https://www.facebook.com/profile.php?id=61589199175432",
+  },
+  {
+    platform: "instagram",
+    label: "Instagram",
+    handle: "@pollardnow26",
+    href: "https://www.instagram.com/pollardnow26",
+  },
+] as const;
+
 export const navLinks = [
   { href: "/", label: "Home" },
   { href: "/plan", label: "The Plan" },
