@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { externalLinks, navLinks } from "@/lib/links";
+import { SocialLinks } from "@/components/social-links";
 import logo from "../../public/images/pollard-now-logo-full.png";
 
 const hashtags = ["#PollardNow", "#NeedhamVotes", "#InvestInNeedham"];
@@ -21,29 +22,37 @@ export function SiteFooter() {
               sign.
             </p>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-primary hover:bg-white/90"
-            >
-              Join the Mailing List
-            </Link>
-            <Link
-              href="/volunteer"
-              className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-foreground hover:bg-accent-hover hover:text-primary-contrast"
-            >
-              Volunteer
-            </Link>
-            <a
-              href={externalLinks.donate}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 rounded-full border border-white/40 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
-            >
-              Donate to the Campaign
-              <span aria-hidden="true">↗</span>
-              <span className="sr-only">(opens in new tab)</span>
-            </a>
+          <div className="flex flex-col gap-4 md:items-end">
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-primary hover:bg-white/90"
+              >
+                Join the Mailing List
+              </Link>
+              <Link
+                href="/volunteer"
+                className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-foreground hover:bg-accent-hover hover:text-primary-contrast"
+              >
+                Volunteer
+              </Link>
+              <a
+                href={externalLinks.donate}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-1.5 rounded-full border border-white/40 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+              >
+                Donate to the Campaign
+                <span aria-hidden="true">↗</span>
+                <span className="sr-only">(opens in new tab)</span>
+              </a>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-sm font-semibold text-white/85">
+                Follow along
+              </span>
+              <SocialLinks variant="onPrimary" />
+            </div>
           </div>
         </div>
       </div>
@@ -74,6 +83,10 @@ export function SiteFooter() {
               <li key={tag}>{tag}</li>
             ))}
           </ul>
+          <h2 className="mt-6 text-xs font-semibold uppercase tracking-wider text-foreground-muted">
+            Follow us
+          </h2>
+          <SocialLinks variant="default" className="mt-3" />
         </div>
 
         <nav aria-label="Footer">
@@ -128,7 +141,7 @@ export function SiteFooter() {
                 rel="noopener noreferrer"
                 className="text-foreground hover:text-primary"
               >
-                Official Pollard project page{" "}
+                Official Pollard Middle School Project page{" "}
                 <span aria-hidden="true" className="text-foreground-muted">
                   ↗
                 </span>

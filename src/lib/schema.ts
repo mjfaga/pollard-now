@@ -1,5 +1,5 @@
 import { SITE, absUrl } from "./site";
-import { externalLinks } from "./links";
+import { externalLinks, socialLinks } from "./links";
 
 export function websiteSchema() {
   return {
@@ -39,7 +39,7 @@ export function organizationSchema() {
         addressCountry: SITE.area.country,
       },
     },
-    sameAs: [externalLinks.projectPage],
+    sameAs: [externalLinks.projectPage, ...socialLinks.map((s) => s.href)],
   };
 }
 

@@ -70,7 +70,7 @@ export default function FaqPage() {
               variant="ghost"
               className="text-sm"
             >
-              Official project page ↗
+              Official Pollard Middle School Project page ↗
             </CtaLink>
           </div>
         </div>
