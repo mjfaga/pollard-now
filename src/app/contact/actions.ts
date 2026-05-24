@@ -1,5 +1,7 @@
 "use server";
 
+import { addSubscriber } from "@/lib/mailchimp";
+
 type ActionState =
   | { status: "idle" }
   | { status: "success"; message: string }
@@ -66,6 +68,16 @@ export async function subscribeEmail(
       status: "error",
       message: "Please check the highlighted fields.",
       fieldErrors,
+    };
+  }
+
+  const result = await addSubscriber({ firstName, lastName, email });
+  if (!result.ok) {
+    console.error("Mailchimp subscribe failed:", result);
+    return {
+      status: "error",
+      message:
+        "Sorry — we couldn't add you to the list just now. Please try again in a moment.",
     };
   }
 
