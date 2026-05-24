@@ -25,18 +25,33 @@ export function FormSuccess({
 
   return (
     <div className="flex flex-col items-center gap-5 py-6 text-center sm:py-8">
-      <span className="thanks-badge inline-flex h-16 w-16 items-center justify-center rounded-full bg-success text-primary-contrast">
+      {/* Brand mark: the "O" from the Pollard NOW signage — a white ring with
+          the gold check sweeping up and out of it, on a navy chip. Geometry
+          mirrors app/icon.svg; the gold (#ffcd57) is sampled from the signage
+          (no design token matches it). */}
+      <span className="thanks-badge inline-flex h-20 w-20 items-center justify-center rounded-full bg-primary text-primary-contrast sm:h-24 sm:w-24">
         <svg
-          viewBox="0 0 24 24"
+          viewBox="0 0 64 64"
           fill="none"
-          stroke="currentColor"
-          strokeWidth={3}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-8 w-8"
+          className="h-12 w-12 sm:h-14 sm:w-14"
           aria-hidden="true"
         >
-          <path className="thanks-check" d="M5 13l4 4L19 7" />
+          <circle
+            className="thanks-o"
+            cx="31"
+            cy="34"
+            r="15"
+            stroke="currentColor"
+            strokeWidth={7}
+          />
+          <path
+            className="thanks-check"
+            d="M21 35 L29 45 L52 13"
+            stroke="#ffcd57"
+            strokeWidth={6.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       </span>
 

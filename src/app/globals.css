@@ -107,8 +107,9 @@ body {
 
 /* Entrance animation for the post-submit "thank you" panel
    (components/form-success.tsx). Reduced-motion users get the final state
-   immediately via the rule above. The checkmark and each text block animate
-   `forwards`/`both` so they settle visible regardless of motion preference. */
+   immediately via the rule above. The "O" ring, the gold check, and each text
+   block animate `forwards`/`both` so they settle visible regardless of motion
+   preference. */
 @keyframes thanks-pop {
   0% {
     opacity: 0;
@@ -144,10 +145,21 @@ body {
   animation: thanks-pop 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* The "O" ring draws first (from the top, clockwise), then the gold check
+   sweeps through. Dash lengths ≈ each path's length: ring ≈ 2π·15, check ≈ 52. */
+.thanks-o {
+  stroke-dasharray: 95;
+  stroke-dashoffset: 95;
+  transform: rotate(-90deg);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: thanks-draw 0.5s 0.15s ease-out forwards;
+}
+
 .thanks-check {
-  stroke-dasharray: 24;
-  stroke-dashoffset: 24;
-  animation: thanks-draw 0.4s 0.25s ease-out forwards;
+  stroke-dasharray: 54;
+  stroke-dashoffset: 54;
+  animation: thanks-draw 0.45s 0.55s ease-out forwards;
 }
 
 .thanks-rise {
