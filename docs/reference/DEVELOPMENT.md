@@ -41,6 +41,7 @@ The subscribe form delivers signups to Mailchimp via a server action, which need
 | ----------------------- | ----------------- | --------------------------------------------------------------- |
 | `MAILCHIMP_API_KEY`     | Subscribe form    | Secret. From Mailchimp → Account → Extras → API keys. Includes the datacenter suffix, e.g. `…-us4`. |
 | `MAILCHIMP_AUDIENCE_ID` | Subscribe form    | The target audience/list id. "Pollard Now Committee 2026" = `301eaebfa2`. |
+| `FORMS_DRY_RUN`         | Local testing     | Set to `1` to skip all external form delivery so submitting any form shows its "thank you" panel without sending anything. Honored only in dev (ignored in production builds). Leave unset normally. |
 
 Copy `.env.example` to `.env.local` and fill in the key for local dev:
 
@@ -51,6 +52,21 @@ cp .env.example .env.local   # then paste your MAILCHIMP_API_KEY
 `.env.local` is git-ignored — **never commit real secrets**. Without these set, the site still runs,
 but submitting the subscribe form returns a friendly error instead of adding the contact. The
 keys must also be added to the Vercel project (Preview + Production) for deployed environments.
+
+### Previewing the form "thank you" panels locally
+
+To see each form's post-submit success panel **without sending anything**, enable the dry-run flag
+and start the dev server:
+
+```bash
+echo "FORMS_DRY_RUN=1" >> .env.local
+npm run dev
+```
+
+Then submit the contact, subscribe, or volunteer form — each shows its thank-you panel while
+Mailchimp and the volunteer Google Form are skipped. (The contact form has no external delivery, so
+it shows the panel regardless.) The flag is ignored in production builds, so a deployed site can
+never silently drop a real submission.
 
 Other configuration lives in `src/lib/site.ts` (canonical URL and site identity as plain constants);
 update the domain there when moving to a custom domain.

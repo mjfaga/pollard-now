@@ -1,6 +1,7 @@
 "use server";
 
 import { addSubscriber } from "@/lib/mailchimp";
+import { isFormsDryRun } from "@/lib/dry-run";
 
 type ActionState =
   | { status: "idle" }
@@ -70,6 +71,11 @@ export async function subscribeEmail(
       message: "Please check the highlighted fields.",
       fieldErrors,
     };
+  }
+
+  // Local dry-run: skip Mailchimp and show the success panel without subscribing.
+  if (isFormsDryRun()) {
+    return { status: "success", name: firstName.slice(0, 60) };
   }
 
   const result = await addSubscriber({ firstName, lastName, email });

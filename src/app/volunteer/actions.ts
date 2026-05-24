@@ -1,6 +1,7 @@
 "use server";
 
 import { volunteerInterests } from "@/lib/volunteer";
+import { isFormsDryRun } from "@/lib/dry-run";
 
 type ActionState =
   | { status: "idle" }
@@ -70,6 +71,11 @@ export async function submitVolunteer(
       message: "Please correct the highlighted fields and try again.",
       fieldErrors,
     };
+  }
+
+  // Local dry-run: skip the Google Form POST and show the success panel.
+  if (isFormsDryRun()) {
+    return { status: "success", name: firstName.slice(0, 60) };
   }
 
   const params = new URLSearchParams();
