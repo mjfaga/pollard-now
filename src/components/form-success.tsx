@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { CtaLink } from "@/components/cta-button";
+import { PollardMark } from "@/components/pollard-mark";
 import { SocialLinks } from "@/components/social-links";
 import { personalize, type FormSuccessContent } from "@/lib/forms";
 
@@ -25,20 +26,7 @@ export function FormSuccess({
 
   return (
     <div className="flex flex-col items-center gap-5 py-6 text-center sm:py-8">
-      <span className="thanks-badge inline-flex h-16 w-16 items-center justify-center rounded-full bg-success text-primary-contrast">
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={3}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-8 w-8"
-          aria-hidden="true"
-        >
-          <path className="thanks-check" d="M5 13l4 4L19 7" />
-        </svg>
-      </span>
+      <PollardMark className="thanks-badge h-20 w-20 sm:h-24 sm:w-24" />
 
       <div className="space-y-2">
         <h2
