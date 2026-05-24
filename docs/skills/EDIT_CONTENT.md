@@ -16,6 +16,7 @@ the data; they rarely contain literal copy.
 | FAQ questions & answers                       | `src/lib/faqs.ts`     |
 | Committee member bios                         | `src/lib/committee.ts`|
 | Footnotes / cited sources                    | `src/lib/sources.ts`  |
+| Form headings & post-submit thank-you copy   | `src/lib/forms.ts`    |
 | Election day or other shared dates           | `src/lib/project.ts` (`electionDay`) |
 
 ## Steps

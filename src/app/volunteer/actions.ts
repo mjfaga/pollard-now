@@ -4,7 +4,7 @@ import { volunteerInterests } from "@/lib/volunteer";
 
 type ActionState =
   | { status: "idle" }
-  | { status: "success"; message: string }
+  | { status: "success"; name?: string }
   | { status: "error"; message: string; fieldErrors?: Record<string, string> };
 
 // The campaign's existing Google Form. Posting to /formResponse records the
@@ -42,7 +42,7 @@ export async function submitVolunteer(
 ): Promise<ActionState> {
   // Honeypot: silently accept bot submissions without forwarding them.
   if (formData.get("website")) {
-    return { status: "success", message: "Thanks for signing up to volunteer!" };
+    return { status: "success" };
   }
 
   const firstName = String(formData.get("firstName") ?? "").trim();
@@ -111,9 +111,5 @@ export async function submitVolunteer(
     };
   }
 
-  return {
-    status: "success",
-    message:
-      "Thank you for signing up to volunteer! We'll be in touch about next steps.",
-  };
+  return { status: "success", name: firstName.slice(0, 60) };
 }

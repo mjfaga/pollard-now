@@ -29,13 +29,7 @@ export default function VolunteerPage() {
 
       <section className="mx-auto max-w-3xl px-5 py-14 md:px-8 md:py-20">
         <div className="rounded-2xl border border-border bg-surface p-7 md:p-8">
-          <h2 className="font-display text-2xl font-semibold text-foreground">
-            {volunteerIntro.formHeading}
-          </h2>
-          <p className="mt-2 text-foreground-muted">{volunteerIntro.formNote}</p>
-          <div className="mt-7">
-            <VolunteerForm />
-          </div>
+          <VolunteerForm />
         </div>
       </section>
 
