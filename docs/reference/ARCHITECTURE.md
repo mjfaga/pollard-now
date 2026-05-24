@@ -93,8 +93,11 @@ typed error rather than a false success.
 **Contact form** still **stubs delivery** — there is a `TODO` to wire a real email destination.
 Before sending those submissions anywhere, get an approved, secure destination.
 
-The client form components (`contact-form.tsx`, `subscribe-form.tsx`) use these actions with
-`useActionState` for inline validation and status messaging.
+The client form components (`contact-form.tsx`, `subscribe-form.tsx`, and
+`volunteer/volunteer-form.tsx`) use these actions with `useActionState` for inline validation. On
+success each one swaps its whole card for a shared celebratory panel (`components/form-success.tsx`)
+whose headline, message, and next-step CTAs come from `src/lib/forms.ts`; the server action returns
+the submitter's first name so the panel can greet them.
 
 ## Assets
 

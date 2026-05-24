@@ -38,8 +38,24 @@
   --color-ring: var(--ring);
   --color-danger: var(--danger);
   --color-success: var(--success);
-  --font-sans: var(--font-inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif);
-  --font-display: var(--font-montserrat, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif);
+  --font-sans: var(
+    --font-inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif
+  );
+  --font-display: var(
+    --font-montserrat,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif
+  );
 }
 
 html {
@@ -82,10 +98,68 @@ body {
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Entrance animation for the post-submit "thank you" panel
+   (components/form-success.tsx). Reduced-motion users get the final state
+   immediately via the rule above. The checkmark and each text block animate
+   `forwards`/`both` so they settle visible regardless of motion preference. */
+@keyframes thanks-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  60% {
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes thanks-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes thanks-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.thanks-badge {
+  animation: thanks-pop 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.thanks-check {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: thanks-draw 0.4s 0.25s ease-out forwards;
+}
+
+.thanks-rise {
+  animation: thanks-rise 0.5s 0.18s ease-out both;
+}
+
+.thanks-rise-2 {
+  animation: thanks-rise 0.5s 0.28s ease-out both;
+}
+
+.thanks-rise-3 {
+  animation: thanks-rise 0.5s 0.4s ease-out both;
 }
 
 /* Hide the default Google Translate widget chrome and prevent the

@@ -64,6 +64,8 @@ data module, not the page markup.**
 - `faqs.ts` — FAQ entries (`q`, `a`, optional `bullets`, `footer`).
 - `committee.ts` — committee member bios.
 - `sources.ts` — footnotes cited by superscripts in the copy.
+- `forms.ts` — form card headings/descriptions plus the post-submit "thank you" copy (message +
+  CTAs) for the contact, subscribe, and volunteer forms.
 - `schema.ts` — JSON-LD builders that reuse the same content.
 
 See [EDIT_CONTENT](docs/skills/EDIT_CONTENT.md).

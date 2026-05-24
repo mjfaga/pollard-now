@@ -32,29 +32,11 @@ export default function ContactPage() {
 
       <section className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-2 md:gap-12 md:px-8 md:py-20">
         <div className="rounded-2xl border border-border bg-surface p-7 md:p-8">
-          <h2 className="font-display text-2xl font-semibold text-foreground">
-            Contact us
-          </h2>
-          <p className="mt-2 text-foreground-muted">
-            Questions, ideas, story to share, or want to host a yard sign?
-            Send a note.
-          </p>
-          <div className="mt-7">
-            <ContactForm />
-          </div>
+          <ContactForm />
         </div>
 
         <div className="rounded-2xl border border-border bg-surface-muted p-7 md:p-8">
-          <h2 className="font-display text-2xl font-semibold text-foreground">
-            Sign up for our emails
-          </h2>
-          <p className="mt-2 text-foreground-muted">
-            Short, occasional updates with key dates, talking points, and ways
-            to help. Unsubscribe any time.
-          </p>
-          <div className="mt-7">
-            <SubscribeForm />
-          </div>
+          <SubscribeForm />
         </div>
       </section>
 
@@ -103,8 +85,7 @@ export default function ContactPage() {
               <span className="sr-only">(opens in new tab)</span>
             </h3>
             <p className="mt-2 text-sm text-foreground-muted">
-              Plans, documents, and meeting updates from Needham Public
-              Schools.
+              Plans, documents, and meeting updates from Needham Public Schools.
             </p>
           </a>
         </div>
@@ -116,8 +97,8 @@ export default function ContactPage() {
             Follow the campaign
           </h2>
           <p className="max-w-md text-sm text-foreground-muted">
-            Events, reminders, and ways to help — follow Pollard Now on
-            Facebook and @pollardnow26 on Instagram.
+            Events, reminders, and ways to help — follow Pollard Now on Facebook
+            and @pollardnow26 on Instagram.
           </p>
           <SocialLinks variant="default" />
         </div>

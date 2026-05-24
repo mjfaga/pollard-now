@@ -4,18 +4,22 @@ import { addSubscriber } from "@/lib/mailchimp";
 
 type ActionState =
   | { status: "idle" }
-  | { status: "success"; message: string }
+  | { status: "success"; name?: string }
   | { status: "error"; message: string; fieldErrors?: Record<string, string> };
 
 const isValidEmail = (value: string) =>
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+// The thank-you panel greets the submitter by first name; cap the length so a
+// pasted essay can't blow out the layout.
+const firstNameOf = (value: string) => value.split(/\s+/)[0]?.slice(0, 60);
 
 export async function submitContact(
   _prev: ActionState,
   formData: FormData,
 ): Promise<ActionState> {
   if (formData.get("website")) {
-    return { status: "success", message: "Thanks! We'll be in touch." };
+    return { status: "success" };
   }
 
   const name = String(formData.get("name") ?? "").trim();
@@ -38,10 +42,7 @@ export async function submitContact(
   }
 
   // TODO: wire up real delivery (email service, CRM, etc.).
-  return {
-    status: "success",
-    message: "Thanks for reaching out — we'll get back to you soon.",
-  };
+  return { status: "success", name: firstNameOf(name) };
 }
 
 export async function subscribeEmail(
@@ -49,7 +50,7 @@ export async function subscribeEmail(
   formData: FormData,
 ): Promise<ActionState> {
   if (formData.get("website")) {
-    return { status: "success", message: "You're on the list." };
+    return { status: "success" };
   }
 
   const firstName = String(formData.get("firstName") ?? "").trim();
@@ -81,8 +82,5 @@ export async function subscribeEmail(
     };
   }
 
-  return {
-    status: "success",
-    message: "You're on the list. Talk soon!",
-  };
+  return { status: "success", name: firstName.slice(0, 60) };
 }
