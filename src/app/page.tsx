@@ -9,25 +9,25 @@ import { externalLinks } from "@/lib/links";
 import { electionDay, foundation, heroAside, reasons, voice } from "@/lib/project";
 import { sources, sourceAnchor } from "@/lib/sources";
 import logo from "../../public/images/pollard-now-logo-full.png";
+import exteriorAerial from "../../public/images/carousel/exterior-aerial.png";
 import siteDesign from "../../public/images/carousel/image.png";
-import sitePlanComparison from "../../public/images/carousel/image-1.png";
 import currentBackLot from "../../public/images/carousel/IMG_2599-scaled.jpg";
 import currentFront from "../../public/images/carousel/IMG_2603-scaled.jpg";
 
 const carouselSlides: CarouselSlide[] = [
   {
+    src: exteriorAerial,
+    alt: "Illustrated aerial view of the proposed new Pollard Middle School campus showing interconnected building wings with solar panels on rooftops, solar canopy-covered parking areas along Harris Ave and Stevens Road, athletic fields, and the surrounding Needham neighborhood with Defazio Park, Coulton Park, Glenwood Road, Mayo Ave, and Pinewood Road visible. The MBTA commuter rail line runs along the northern edge of the property.",
+    title: "The new Pollard — aerial view",
+    caption:
+      "An illustrated bird’s-eye view of the proposed campus showing the building, solar-covered parking, fields, and its relationship to the surrounding neighborhood.",
+  },
+  {
     src: siteDesign,
     alt: "Annotated site design diagram for the new Pollard Middle School showing the proposed building, with callouts: supplementing existing planting along frontage, driveway aligned to Mayo Ave, parking trays with PV canopies, bus exit route on-site, covered bike parking near front door, relocated loading dock, reduced bus drive width, outdoor fitness stations, fields relocated to front of school with parking moved to edges, safe bike paths to covered bike parking, second parking lot access, high fencing around field, HP and van spaces near front door, minimizing existing tree removal and replanting with new. Vehicle capacity: 260 parked cars, 26 cars in queue, 19 buses, 5 vans.",
     title: "Site design — current progress",
     caption:
-      "The proposed Pollard site with the building's relationship to fields, parking, bike paths, the loading dock, and existing trees called out.",
-  },
-  {
-    src: sitePlanComparison,
-    alt: "Three side-by-side site plans of the Pollard Middle School property. Left: the existing site showing the current building footprint, parking, fields, and surrounding streets. Middle: the January 2026 plan with a new building footprint and reorganized parking, marked '260 parking spaces'. Right: the March 2026 plan, the latest layout, also '260 parking spaces', with refined building shape and labeled Primary, Secondary, and Cafeteria entrances.",
-    title: "From today’s footprint to the new Pollard",
-    caption:
-      "Three-up comparison: the existing site, the January 2026 plan, and the latest March 2026 plan — both proposals hold 260 parking spaces.",
+      "The proposed Pollard site with the building’s relationship to fields, parking, bike paths, the loading dock, and existing trees called out.",
   },
   {
     src: currentFront,
