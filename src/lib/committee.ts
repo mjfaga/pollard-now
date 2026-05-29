@@ -31,7 +31,7 @@ export const committee: ReadonlyArray<CommitteeMember> = [
     initials: "KL",
     paragraphs: [
       "Our family’s journey in Needham began in 2017 when we opened Reveler Beverage Co. on Chestnut Street. What started as a business venture quickly became a home; by 2018, we moved from the city to become full-time residents. Eight years later, we love the “walkable” life Needham offers—whether it’s scooting with our three kids (ages 10, 7, and 3) to school, commuting via the train, or greeting neighbors at the shop.",
-      "In 2023, I joined Town Meeting to deepen my civic roots. Now, as a member of this committee, I’m combining my 20+ years in advertising and marketing with my passion for our public schools. As your Events Coordinator, I’m excited to build spaces where our community can gather, learn, and work together to secure a strong future for Pollard. This is, without a doubt, my most important campaign to date!",
+      "In 2023, I joined Town Meeting to deepen my civic roots. Now, as a member of this committee, I’m combining my 20+ years in advertising and marketing with my passion for our public schools. I’m excited to build spaces where our community can gather, learn, and work together to secure a strong future for Pollard. This is, without a doubt, my most important campaign to date!",
     ],
   },
   {

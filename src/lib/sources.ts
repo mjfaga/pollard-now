@@ -20,6 +20,10 @@ export const sources: ReadonlyArray<Source> = [
     n: 3,
     text: 'Cellini, S. R., Ferreira, F., & Rothstein, J. (2010). “The Value of School Facility Investments: Evidence from a Dynamic Regression Discontinuity Design.” The Quarterly Journal of Economics.',
   },
+  {
+    n: 4,
+    text: "Needham Public Schools FY27 Student Population Enrollment Memorandum (Presented to School Committee Dec. 16, 2025).",
+  },
 ];
 
 export function sourceAnchor(n: number): string {

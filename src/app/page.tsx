@@ -131,11 +131,12 @@ export default function HomePage() {
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground-muted">
               An investment in our schools is an investment in our community. By
-              replacing our aging, overcrowded, and under-resourced Pollard
-              middle school with a modern, energy efficient building we protect
-              our property values, open the potential for up to $60 million
-              <FootnoteRef n={1} /> in state funding, and create a resource for
-              every resident.
+              replacing our aging and undersized, Pollard middle school with a
+              modern, energy efficient building we protect our property values,
+              open the potential for up to $60 million
+              <FootnoteRef n={1} /> in state funding, and create a contemporary
+              learning environment for our students and a resource for every
+              resident.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">

@@ -26,7 +26,7 @@ export const faqs: ReadonlyArray<Faq> = [
   {
     id: "comparison",
     q: "Is the cost higher than other schools of its kind?",
-    a: "No. It is the lowest cost of the projects proposed for an 8/26/26 Project Scope and Budget agreement, to be signed by the town and the MSBA. It represents the maximum amount the project can be.",
+    a: "No. It is the lowest cost of the projects proposed for an 8/26/26 Project Scope and Budget (PS&B) agreement, to be signed by the town and the MSBA. The PS&B agreement will represent the maximum project budget.",
   },
   {
     id: "operating-budget",
@@ -41,7 +41,7 @@ export const faqs: ReadonlyArray<Faq> = [
   {
     id: "tax-impact",
     q: "How much will my individual property taxes rise?",
-    a: "Based on a $336 million estimate and current town analysis (including a conservative 7% interest rate), the impact is a temporary investment that declines over time.",
+    a: "Based on a $336 million estimate and current town analysis, calculated at 7% interest, the impact is a temporary investment that declines over time.",
     bullets: [
       {
         label: "Annual Range",
@@ -62,36 +62,32 @@ export const faqs: ReadonlyArray<Faq> = [
     bullets: [
       {
         label: "Safety & Functionality",
-        text: "We are replacing an outdated 434-seat space that lacks a backstage, dressing rooms and wings. Modernizing the facility eliminates hazardous exposed cabling and provides a safe “learning lab” for the 100% of Pollard students in performing arts.",
+        text: "We are replacing an outdated 434-seat space that lacks a backstage, dressing rooms and wings. Modernizing the facility eliminates unsafe and undersized spaces and provides a “learning lab” for the 100% of Pollard students in performing arts.",
       },
       {
-        label: "Solving the Town “Bottleneck”",
-        text: "Currently, the Newman stage is the only viable option in town and is overbooked. A modern auditorium frees up space for high school performances, our vibrant local community theatre, and other groups.",
+        label: "Upgrades Performing Arts",
+        text: "Needham lacks a theater space with the proper backstage capacity, acoustics, and lighting required for modern productions. Building an auditorium at Pollard is the fastest path to bringing a properly equipped, right-sized theater to town. This facility will finally provide a high-quality home for middle school shows, high school overflow, and our local community theater groups.",
       },
       {
         label: "A New Revenue Stream",
-        text: "An up-to-date venue allows Needham to rent to local performing arts organizations that currently go to other towns. This is projected to generate approximately $100 thousand annually to fund ongoing maintenance.",
-      },
-      {
-        label: "A Community Hub",
-        text: "Beyond school hours, the space serves every resident as a venue for school performances, town meetings, guest speakers, and local theater productions.",
+        text: "An up-to-date venue opens up the opportunity for Needham to rent to local performing arts organizations that currently go to other towns, providing the possibility of future revenue generation.",
       },
     ],
   },
   {
     id: "over-budget",
     q: "What happens if the project goes over budget?",
-    a: "We’ve built in protection. The project uses a “Construction Manager at Risk” (CMR) model, which provides a Guaranteed Maximum Price. This shifts some of the risk of cost overruns from the taxpayers to the contractor. We also have a dedicated Town committee of experts (PPBC or Permanent Public Building Committee) overseeing every dollar to ensure fiscal accountability.",
+    a: "We’ve built in protection. The project uses a “Construction Manager at Risk” (CMR) model, which provides a Guaranteed Maximum Price. This shifts some of the risk of cost overruns from the taxpayers to the contractor. We also have a dedicated Town committee of experts (our Permanent Public Building Committee (PPBC)) overseeing every dollar to ensure fiscal accountability.",
   },
   {
     id: "seniors",
     q: "Will this tax increase price seniors or low-income residents out of Needham?",
-    a: "We are committed to protecting our most vulnerable neighbors. The Town offers several tax relief and deferral programs specifically for seniors and those on fixed incomes.",
+    a: "We understand the concerns of our most vulnerable neighbors. The Town offers several tax relief and deferral programs specifically for seniors and those on fixed incomes.",
   },
   {
     id: "enrollment",
-    q: "Why rebuild Pollard when enrollment is projected to decrease?",
-    a: "This isn’t about more seats; it’s about better spaces. While enrollment is steady, our current classrooms are outdated and undersized. A new build allows us to move 6th grade back to Pollard, freeing up space at our crowded elementary schools. It will enable the entire Needham school system to work more efficiently for every student.",
+    q: "Why rebuild Pollard when enrollment is projected to be steady?",
+    a: "This isn’t about more seats; it’s about better spaces. Our current classrooms are outdated and undersized. A new build allows us to move 6th grade back to Pollard, freeing up a space for future projects and/or needs.",
   },
   {
     id: "vote-fails",
