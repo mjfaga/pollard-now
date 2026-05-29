@@ -11,6 +11,10 @@ import { sources, sourceAnchor } from "@/lib/sources";
 import logo from "../../public/images/pollard-now-logo-full.png";
 import exteriorAerial from "../../public/images/carousel/exterior-aerial.png";
 import siteDesign from "../../public/images/carousel/image.png";
+import siteComparison from "../../public/images/carousel/site-comparison.png";
+import siteCirculation from "../../public/images/carousel/site-circulation.png";
+import siteSections from "../../public/images/carousel/site-sections.png";
+import siteSectionParking from "../../public/images/carousel/site-section-parking.png";
 import currentBackLot from "../../public/images/carousel/IMG_2599-scaled.jpg";
 import currentFront from "../../public/images/carousel/IMG_2603-scaled.jpg";
 
@@ -28,6 +32,34 @@ const carouselSlides: CarouselSlide[] = [
     title: "Site design — current progress",
     caption:
       "The proposed Pollard site with the building’s relationship to fields, parking, bike paths, the loading dock, and existing trees called out.",
+  },
+  {
+    src: siteComparison,
+    alt: "Side-by-side neighborhood maps comparing the existing Pollard Middle School site with the proposed new campus. Both maps show surrounding streets including Bradford St, Mayo Ave, Harris Ave, Stevens Rd, Glenwood Rd, Dedham Ave, Pinewood Rd, Eaton Rd, and Coulton Park. The existing map shows the current building footprint and parking. The proposed map shows the new, larger building footprint with reorganized parking and landscaping, fitting within the same property boundaries.",
+    title: "Neighborhood context — existing vs. proposed",
+    caption:
+      "The current and proposed footprints overlaid on the surrounding neighborhood, showing how the new campus fits within the same site boundaries.",
+  },
+  {
+    src: siteCirculation,
+    alt: "Site circulation diagram for the proposed Pollard Middle School showing three color-coded traffic routes: orange for buses entering from Bradford St and looping through the bus drop-off area, blue for cars entering from Harris Ave through the parking tiers and car drop-off zone, and red dotted lines for pedestrians and bikes using paths around the perimeter and through the site. Primary, Secondary, and Cafeteria entrances are labeled. The legend lists: Buses, Cars, Pedestrians & Bikes.",
+    title: "Site circulation — how traffic flows",
+    caption:
+      "Color-coded routes for buses (orange), cars (blue), and pedestrians & bikes (red) showing separated circulation through the site.",
+  },
+  {
+    src: siteSections,
+    alt: "Two architectural cross-section renderings of the proposed Pollard Middle School. Top: East-West Section showing the building profile from Paper Road through the transition area, bus drop-off, cafeteria, atrium, another transition area, to Coulton Park, with a small site key map. Bottom: North-South Section showing the profile from Harris Ave through the transition area, play fields, car drop-off, main entrance plaza descending through a 30-foot grade change to the cafeteria atrium and secondary entrance level, then the academic courtyard, to the MBTA right-of-way and Defazio Fields.",
+    title: "Building cross-sections",
+    caption:
+      "East-west and north-south cross-sections revealing how the building steps down a 30-foot grade change from Harris Ave to the MBTA rail line.",
+  },
+  {
+    src: siteSectionParking,
+    alt: "Architectural cross-section rendering of the proposed Pollard Middle School at the parking area, viewed north-south. From left to right: Harris Ave with a vegetated buffer and transition area, a slope down to the west parking lot with alternate PV canopies over the parking tiers, the west entrance of the building, and continuing to the MBTA right-of-way. A small site key map in the upper right shows the section cut location.",
+    title: "Parking cross-section",
+    caption:
+      "North-south section through the parking area showing the vegetated buffer along Harris Ave, sloped terrain, and solar canopy options over the parking tiers.",
   },
   {
     src: currentFront,
